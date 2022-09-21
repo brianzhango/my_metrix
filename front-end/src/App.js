@@ -1,5 +1,6 @@
 import React, { Component, Suspense } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
+import { ProjectDisplay } from './components/ProjectComponents/ProjectDisplay'
 import './scss/style.scss'
 
 const loading = (
