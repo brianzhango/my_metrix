@@ -37,7 +37,7 @@ app.use('/projects', projectsRouter);
 const db = require("./models");
 const projectModel = require("./models/project.model");
 db.mongoose
-  .connect(db.url, {
+  .connect("mongodb+srv://brianozhang:869323246@cluster0.ima9o2n.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })

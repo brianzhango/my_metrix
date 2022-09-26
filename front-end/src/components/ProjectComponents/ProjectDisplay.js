@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from "react";
+import axios from "axios";
+
 import {
     CCard,
     CCardBody,
@@ -12,55 +14,61 @@ import {
     CTableHead,
     CTableHeaderCell,
     CTableRow,
+    CDataTable
   } from '@coreui/react'
   import { DocsExample } from 'src/components'
   
 
 export function ProjectDisplay() {
 
-    const [project, setProject] = useState({})
+    const [project, setProject] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:8082/projects')
+         .then(response => setProject(response.data) )
+
+    },[0])
+    
+    console.log(project)
+
+    const columns = [
+        {
+          key: 'id',
+          label: 'ID',
+          _props: { scope: 'col' },
+        },
+        {
+          key: 'name',
+          label: 'NAME',
+          _props: { scope: 'col' },
+        },
+        {
+          key: 'po_ref',
+          label: 'PO REF',
+          _props: { scope: 'col' },
+        },
+        // {
+        //   key: 'user_id',
+        //   label: 'USER ID',
+        //   _props: { scope: 'col' },
+        // },
+      ]
 
     return (
-        <CRow>
-            <CCol xs={12}>
-                <CCard className="mb-4">
-                <CCardHeader>
-                    <strong>React Table</strong> <small>Basic example</small>
-                </CCardHeader>
-                <CCardBody>
-                    <CTable>
-                        <CTableHead>
-                        <CTableRow>
-                            <CTableHeaderCell scope="col">ID</CTableHeaderCell>
-                            <CTableHeaderCell scope="col">Name</CTableHeaderCell>
-                            <CTableHeaderCell scope="col">PO Ref</CTableHeaderCell>
-                            <CTableHeaderCell scope="col">User ID</CTableHeaderCell>
-                        </CTableRow>
-                        </CTableHead>
-                        <CTableBody>
-                        <CTableRow>
-                            <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                            <CTableDataCell>Mark</CTableDataCell>
-                            <CTableDataCell>Otto</CTableDataCell>
-                            <CTableDataCell>@mdo</CTableDataCell>
-                        </CTableRow>
-                        <CTableRow>
-                            <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                            <CTableDataCell>Jacob</CTableDataCell>
-                            <CTableDataCell>Thornton</CTableDataCell>
-                            <CTableDataCell>@fat</CTableDataCell>
-                        </CTableRow>
-                        <CTableRow>
-                            <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                            <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                            <CTableDataCell>@twitter</CTableDataCell>
-                        </CTableRow>
-                        </CTableBody>
-                    </CTable>
-                </CCardBody>
-                </CCard>
-            </CCol>
-        </CRow>
+        <div>
+            <CRow>
+                <CCol xs={12}>
+                    <CCard className="mb-4">
+                    <CCardHeader>
+                        <strong>Projects</strong>
+                    </CCardHeader>
+                    <CCardBody>
+                    <CTable striped columns={columns} items={project} tableHeadProps={{ color: 'dark' }} />   
+                    </CCardBody>
+                    </CCard>
+                </CCol>
+            </CRow>
+        </div>
     )
 
 }
