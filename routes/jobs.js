@@ -1,5 +1,7 @@
 const router = require('express').Router();
+let Job = require('../models/job.model');
 let Project = require('../models/project.model');
+let Shipment = require('../models/shipment.model');
 
 router.route('/').get(async (req, res) => {
     await Project.aggregate([
@@ -47,6 +49,12 @@ router.route('/').get(async (req, res) => {
     .then(projects => res.json(projects))
     .catch(err => res.status(400).json('Error: ' + err));
 
-})
+});
+
+router.route('/:job_number').get((req, res) => {
+    Shipment.find({job_number : req.params.job_number})
+        .then(shipments => res.json(shipments))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 
 module.exports = router;

@@ -5,7 +5,7 @@ import { ProjectDisplay } from 'src/components/ProjectComponents/ProjectDisplay'
 const Dashboard = () => {
 
   return (
-    <ProjectDisplay />
+    console.log("hey")
   )
 }
 

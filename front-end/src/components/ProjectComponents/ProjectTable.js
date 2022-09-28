@@ -44,6 +44,10 @@ export function ProjectTable(props) {
 
     console.log(props.jobs)
 
+    const vars = { 
+        "--cui-badge-font-size" : "0.9em"
+      }
+
     return (
         <div>
             <CRow>
@@ -66,14 +70,16 @@ export function ProjectTable(props) {
                                                               : "success"
 
                                             let button = listValue.status === "Awaiting Approval" ? "Approve"
-                                                          : listValue.status === "In Transit" ? "Shippment"
+                                                          : listValue.status === "In Transit" ? "Shipment"
                                                           : false
+
+                                            let link = button === "Shipment" ? `/jobs/${listValue.job_number}`: `${listValue.job_number}`
                                             return (
                                                 <CTableRow key={index}>
                                                     <CTableHeaderCell scope="row">{listValue.job_number}</CTableHeaderCell>
-                                                    <CTableDataCell><CBadge color={badgeColour} >{listValue.status}</CBadge></CTableDataCell>
+                                                    <CTableDataCell><CBadge style={vars} color={badgeColour}>{listValue.status}</CBadge></CTableDataCell>
                                                     <CTableDataCell>{listValue.ETA}</CTableDataCell>
-                                                    <CTableDataCell>{button && <CButton color="dark" size="sm" shape="rounded-pill">{button}</CButton>}</CTableDataCell>
+                                                    <CTableDataCell>{button && <CButton color="dark" href={link} target="_self" size="sm" shape="rounded-pill"> {button}</CButton>}</CTableDataCell>
                                                 </CTableRow>
                                             )
                                         })}

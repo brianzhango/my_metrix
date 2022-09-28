@@ -12,6 +12,6 @@ const shipmentSchema = mongoose.Schema(
   {collection:"shipments"}
 )
  
-const Shippment = mongoose.model("Shipments", shipmentSchema);
+const Shipment = mongoose.model("Shipments", shipmentSchema);
 
-module.exports = Shippment;
+module.exports = Shipment;
