@@ -51,8 +51,26 @@ router.route('/').get(async (req, res) => {
 
 });
 
-router.route('/:job_number').get((req, res) => {
-    Shipment.find({job_number : req.params.job_number})
+router.route('/:job_number').get(async (req, res) => {
+    await Shipment.aggregate([
+        
+        {$match:{job_number : req.params.job_number}},
+        {$project:{
+            _id:1,
+            job_number:1,
+            ship_id:1,
+            track_number:1,
+            freighter:1,
+            ship_date : {$dateToString: {
+                                    date: "$ship_date",
+                                    format: "%d/%m/%Y",
+                                    timezone: "Australia/Melbourne",
+                                }
+                        }
+        }},
+     ])
+
+
         .then(shipments => res.json(shipments))
         .catch(err => res.status(400).json('Error: ' + err));
 });

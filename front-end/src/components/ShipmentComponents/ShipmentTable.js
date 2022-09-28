@@ -52,11 +52,12 @@ export function ShipmentTable(props) {
                                 <CTableBody>
                                     
                                         {props.item.map((listValue, index) => { 
+                                            let link = `/jobs/${listValue.job_number}/${listValue.ship_id}`
                                              return (
                                                 <CTableRow key={index}>
                                                     <CTableHeaderCell scope="row">{listValue.ship_id}</CTableHeaderCell>
                                                     <CTableDataCell> <CLink href="https://coreui.io" target="_blank">{listValue.track_number}</CLink></CTableDataCell>
-                                                    <CTableDataCell><CButton color="dark" size="sm" shape="rounded-pill">View</CButton></CTableDataCell>
+                                                    <CTableDataCell><CButton color="dark" href={link} target="_self" size="sm" shape="rounded-pill">View</CButton></CTableDataCell>
                                                 </CTableRow>
                                             )
                                         }
