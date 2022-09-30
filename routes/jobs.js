@@ -75,4 +75,28 @@ router.route('/:job_number').get(async (req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/:job_number/:ship_id').get(async (req, res) => {
+    await Shipment.aggregate([
+        
+        {$match:{ship_id : req.params.ship_id}},
+        {$project:{
+            _id:1,
+            job_number:1,
+            ship_id:1,
+            track_number:1,
+            freighter:1,
+            ship_date : {$dateToString: {
+                                    date: "$ship_date",
+                                    format: "%d/%m/%Y",
+                                    timezone: "Australia/Melbourne",
+                                }
+                        }
+        }},
+     ])
+
+
+        .then(shipments => res.json(shipments))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;
