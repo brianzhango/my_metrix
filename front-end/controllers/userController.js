@@ -14,25 +14,29 @@ const userLogin = asyncHandler(async(req, res) => {
 
     const user = await User.findOne({username})
 
-    res.json({
-        user
-    })
-
     if(user && (password === user.password)) {
 
         res.json({
 
             id: user.id,
             email: user.email,
-            name: user.name
+            name: user.username,
+            token: generatToken(user.id)
 
         })
     } else {
         res.status(400)
-        throw new Error('Invalid username')
+        throw new Error('Invalid credentials')
     }
 
 })
+
+// Generate JWT
+const generatToken = (id) => {
+    return jwt.sign({id}, process.env.JWT_SECRET, {
+        expiresIn: '2d'
+    })
+}
 
 module.exports = {
     userLogin
