@@ -7,7 +7,7 @@ const asyncHandler = require('express-async-handler')
 
 const projectDisplay = asyncHandler(async(req, res) => {
 
-    const {id, first_name, email} = await User.findOne({id : req.user.id})
+    // const {id, first_name, email} = await User.findOne({id : req.user.id})
 
     await Project.aggregate([
         { 

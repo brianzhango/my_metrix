@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
   CCard,
@@ -22,9 +23,13 @@ export function ShipmentDetail() {
 
   const { job_number, ship_id } = useParams();
 
+  const {user} = useSelector((state) => state.auth)
+
   useEffect(() => {
     axios
-      .get(`http://localhost:8082/jobs/${job_number}/${ship_id}`)
+      .get(`http://localhost:8082/jobs/${job_number}/${ship_id}`, { headers: {
+        'Authorization': 'Bearer ' + user.token
+      }})
       .then((response) => setShipment(response.data[0]));
   }, [0]);
 

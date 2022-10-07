@@ -1,6 +1,8 @@
-import { React, useState, useContext} from "react";
-import AuthContext from "src/context/AuthProvider";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { login, reset } from "../../../features/auth/authSlice";
 import {
   CButton,
   CCard,
@@ -14,6 +16,7 @@ import {
   CInputGroupText,
   CRow,
   CImage,
+  CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { cilLockLocked, cilUser } from "@coreui/icons";
@@ -25,24 +28,55 @@ const Login = () => {
   };
    
   
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+      username: '',
+      password: '',
 
-  const [success, setSuccess] = useState(false);
+  });
+ 
+  const { username, password} = formData
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log(username, password);
-    setSuccess(true);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    if (isSuccess || user) {
+      navigate('/jobs')
+    }
+
+    dispatch(reset())
+  }, [user, isError, isSuccess, message, navigate, dispatch])
+
+  const onChange = (e) => {
+      setFormData((prevState) => ({
+          ...prevState,
+          [e.target.name] : e.target.value,
+
+      }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const userData = {
+      username,
+      password,
+    }
+
+    dispatch(login(userData))
   };
+
+  if(isLoading) {
+    return <CSpinner color="primary"/>
+  }
 
   return (
     <>
-      {success ? (
-        <div>
-          <h1>Logged in!</h1>
-        </div>
-      ) : (
         <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
           <CContainer>
             <CRow className="justify-content-center">
@@ -66,9 +100,7 @@ const Login = () => {
                             placeholder="Username"
                             autoComplete="off"
                             id="username"
-                            onChange={(event) =>
-                              setUsername(event.target.value)
-                            }
+                            onChange={onChange} 
                             value={username}
                             required
                             name="username"
@@ -84,9 +116,7 @@ const Login = () => {
                             autoComplete="off"
                             id="password"
                             value={password}
-                            onChange={(event) =>
-                              setPassword(event.target.value)
-                            }
+                            onChange={onChange}
                             required
                             name="password"
                           />
@@ -131,7 +161,6 @@ const Login = () => {
             </CRow>
           </CContainer>
         </div>
-      )}
     </>
   );
 };
