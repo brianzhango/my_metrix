@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // ... other app.use middleware 
-// app.use(express.static(path.join(__dirname, "front-end", "build")))
+app.use(express.static(path.join(__dirname, "front-end", "public")))
 
 // ...
 
@@ -31,9 +31,10 @@ app.use(bodyParser.urlencoded({
 const PORT = process.env.PORT || 8082;
 
 // Right before your app.listen(), add this:
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "front-end", "public", "index.html"));
-// });
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "front-end", "public", "index.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
