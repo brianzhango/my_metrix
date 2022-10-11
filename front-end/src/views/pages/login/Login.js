@@ -17,9 +17,14 @@ import {
   CRow,
   CImage,
   CSpinner,
+  CAlert,
+  CToast,
+  CToastBody,
+  CToastHeader,
+  CToastClose
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { cilLockLocked, cilUser } from "@coreui/icons";
+import { cilLockLocked, cilUser, cilWarning } from "@coreui/icons";
 import Logo from "src/assets/images/metrix-logo.jpg";
 
 const Login = () => {
@@ -34,16 +39,23 @@ const Login = () => {
 
   });
  
-  const { username, password} = formData
+  const { username, password } = formData
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const [visible, setVisible] = useState(false)
+
+  const toastStyle = {
+    marginBottom: "10px",
+  };
+
 
   const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      setVisible(true)
     }
 
     if (isSuccess || user) {
@@ -77,8 +89,19 @@ const Login = () => {
 
   return (
     <>
+        {/* <CAlert color="danger" dismissible visible={visible} onClose={() => setVisible(false)}>
+          <CIcon icon={cilWarning} className="flex-shrink-0 me-2" width={24} height={24} />
+          Invalid username or password.</CAlert> */}
         <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
           <CContainer>
+            <CRow className="justify-content-center">
+            <CToast autohide={false} visible={visible} color="danger" className="text-white align-items-center" style={toastStyle}>
+              <div className="d-flex">
+                <CToastBody>Invalid username or password.</CToastBody>
+                <CToastClose className="me-2 m-auto" white />
+              </div>
+            </CToast>
+            </CRow>
             <CRow className="justify-content-center">
               <CCol md={4}>
                 <CCardGroup>

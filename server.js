@@ -29,6 +29,8 @@ app.use("/jobs", require("./routes/job.route"));
 
 app.use("/users", require("./routes/user.route"));
 
+app.use("/upload", require("./routes/uploadFile"))
+
 const db = require("./models");
 
 db.mongoose
