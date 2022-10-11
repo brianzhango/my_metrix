@@ -34,9 +34,8 @@ file: (req, file) => {
       if (err) {
         return reject(err);
       }
-      const filename = buf.toString('hex') + path.extname(file.originalname);
       const fileInfo = {
-        filename: filename,
+        filename: file.originalname,
         bucketName: 'uploads'
       };
       resolve(fileInfo);
@@ -53,7 +52,7 @@ router.post("/", upload.single('file'), (req, res) => {
 // router.get("/", protect, projectDisplay)
 // @route GET /image/:filename
 // @desc Display Image
-router.get('/image/:filename', (req, res) => {
+router.get('/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {

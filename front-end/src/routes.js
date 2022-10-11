@@ -2,6 +2,7 @@ import React from "react";
 import { ProjectDisplay } from "./components/ProjectComponents/ProjectDisplay";
 import { ShipmentDisplay } from "./components/ShipmentComponents/ShipmentDisplay";
 import { ShipmentDetail } from "./components/ShipmentComponents/ShipmentDetail";
+import {ViewFile} from "./components/ShipmentComponents/ViewFile"
 
 const Error404 = React.lazy(() => import("./views/pages/page404/Page404"));
 
@@ -13,6 +14,11 @@ const routes = [
     path: "/jobs/:job_number/:ship_id",
     name: "ShipmentDetail",
     element: ShipmentDetail,
+  },
+  {
+    path: "/jobs/:job_number/:ship_id/file",
+    name: "ViewFile",
+    element: ViewFile,
   },
   { path: "/*", name: "Error404", element: Error404 },
 ];

@@ -77,6 +77,14 @@ export function ShipmentDetail() {
   const margin = {
     marginBottom: "4px",
   };
+
+  const pdfLink = `http://localhost:8082/upload/${ship_id}.pdf`
+
+  // const handleClick = () => {
+
+  //   navigate(`/jobs/${job_number}/${ship_id}/file`)
+
+  // }
   return (
     // [shipments]
     // console.log("hey")
@@ -127,7 +135,7 @@ export function ShipmentDetail() {
           </CListGroupItem>
         </CListGroup>
         <CCardBody style={vars}>
-          <CButton style={color} color="info" size="lg">
+          <CButton style={color} color="info" size="lg" href={pdfLink}>
             Packing Slip PDF
           </CButton>
         </CCardBody>
