@@ -22,13 +22,19 @@ export function ProjectDisplay() {
         'Authorization': 'Bearer ' + user.token
       }})
       .then((response) => setProject(response.data))
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
      }
-    }, [0]);
+    },[0]);
 
- 
-  const projects = project.map((item) => {
-    return <ProjectTable key={item._id} {...item} />;
-  });
+    console.log(project)
+
+    
+    const projects = Array.isArray(project) ? project.map((item) => {
+      return <ProjectTable key={item._id} {...item} />;
+    }) : [];
 
   return [projects];
 }
