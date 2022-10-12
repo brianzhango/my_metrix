@@ -18,7 +18,7 @@ export function ProjectDisplay() {
     else {
     
     axios
-      .get("http://localhost:8082/jobs", { headers: {
+      .get("http://localhost:8082/api/jobs", { headers: {
         'Authorization': 'Bearer ' + user.token
       }})
       .then((response) => setProject(response.data))

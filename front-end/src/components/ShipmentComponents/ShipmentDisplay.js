@@ -22,7 +22,7 @@ export function ShipmentDisplay() {
     }
     else {
     axios
-      .get(`http://localhost:8082/jobs/${job_number}`, { headers: {
+      .get(`http://localhost:8082/api/jobs/${job_number}`, { headers: {
         'Authorization': 'Bearer ' + user.token
       }})
       .then((response) => setShipment(response.data))
@@ -31,6 +31,8 @@ export function ShipmentDisplay() {
       }
     }, [0]);
   
+
+ 
 
   // const shipments = shipment.map(item => {
   //         return (

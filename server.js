@@ -38,11 +38,11 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-app.use("/jobs", require("./routes/job.route"));
+app.use("/api/jobs", require("./routes/job.route"));
 
-app.use("/users", require("./routes/user.route"));
+app.use("/api/users", require("./routes/user.route"));
 
-app.use("/upload", require("./routes/uploadFile"))
+app.use("/api/upload", require("./routes/uploadFile"))
 
 const db = require("./models");
 
