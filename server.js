@@ -55,7 +55,7 @@ app.get("*", (req, res) => {
 
 // ... other app.use middleware 
 // app.use(express.static(path.join(__dirname, "/front-end/public")))
-app.use(express.static("/front-end/build"))
+app.use(express.static(path.join(__dirname,"/front-end/build")))
 
 const PORT = process.env.PORT || 8082;
 
