@@ -10,7 +10,7 @@
     "client": "npm start --prefix front-end",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "node server.js",
-    "heroku-postbuild": "cd front-end && npm install && npm update && npm start && ../ && npm install"
+    "heroku-postbuild": "cd front-end && npm install && npm i react-scripts && npm update && npm start && ../ && npm install"
   },
   "repository": {
     "type": "git",
