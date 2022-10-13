@@ -48,16 +48,14 @@ db.mongoose
     process.exit();
   });
 
-// ... other app.use middleware 
-// app.use(express.static(path.join(__dirname, "/front-end/public")))
-app.use(express.static("/front-end/build"))
-
-// ...
-
 // Right before your app.listen(), add this:
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname,  "/front-end/build", "index.html"));
 });
+
+// ... other app.use middleware 
+// app.use(express.static(path.join(__dirname, "/front-end/public")))
+app.use(express.static("/front-end/build"))
 
 const PORT = process.env.PORT || 8082;
 
