@@ -49,7 +49,8 @@ db.mongoose
   });
 
 // ... other app.use middleware 
-app.use(express.static(path.join(__dirname, "/front-end/public")))
+// app.use(express.static(path.join(__dirname, "/front-end/public")))
+app.use(express.static("/front-end/public"))
 
 // ...
 
