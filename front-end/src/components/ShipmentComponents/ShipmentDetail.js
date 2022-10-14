@@ -35,7 +35,7 @@ export function ShipmentDetail() {
     }
     else {
     axios
-      .get(`http://localhost:8082/api/jobs/${job_number}/${ship_id}`, { headers: {
+      .get(`/api/jobs/${job_number}/${ship_id}`, { headers: {
         'Authorization': 'Bearer ' + user.token
       }})
       .then((response) => setShipment(response.data[0]))
@@ -78,7 +78,7 @@ export function ShipmentDetail() {
     marginBottom: "4px",
   };
 
-  const pdfLink = `http://localhost:8082/api/upload/${ship_id}.pdf`
+  const pdfLink = `/api/upload/${ship_id}.pdf`
 
   // const handleClick = () => {
 
