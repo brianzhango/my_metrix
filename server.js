@@ -58,9 +58,9 @@ app.use(express.static(path.join(__dirname, "/front-end/public")))
 //     res.sendFile(path.resolve(__dirname,  "front-end", "src", "views", "pages", "Login.js"));
 // });
 
-// app.get("/login", (req, res) => {
-//   res.sendFile(path.resolve(__dirname,  "front-end", "public", "index.html"));
-// });
+app.get("/login", (req, res) => {
+  res.sendFile(path.resolve(__dirname,  "front-end", "public", "index.html"));
+});
 
 const PORT = process.env.PORT || 8082;
 
