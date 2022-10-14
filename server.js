@@ -32,7 +32,7 @@ app.use("/api/upload", require("./routes/uploadFile"))
 const db = require("./models");
 
 db.mongoose
-  .connect( process.en.MONGODB_URI ||
+  .connect(
     "mongodb+srv://brianozhang:869323246@cluster0.ima9o2n.mongodb.net/?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
