@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = `${BASE_URL}/api/users/`
-const BASE_URL = process.env.BASE_URL || "http://localhost:8082"
+const API_URL = `/api/users/`
+// const BASE_URL = process.env.BASE_URL || "http://localhost:8082"
 
 const logout = () => {
     localStorage.removeItem('user')
