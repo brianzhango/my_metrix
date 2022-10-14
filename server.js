@@ -50,7 +50,7 @@ db.mongoose
 
 if (process.env.NODE_ENV === 'production'){
 // ... other app.use middleware 
-app.use(express.static( __dirname, "front-end/build"));
+app.use(express.static( __dirname + "/front-end/build"));
 
 // // Right before your app.listen(), add this:
 // app.get("/", (req, res) => {
