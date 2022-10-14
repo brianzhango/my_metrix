@@ -40,7 +40,7 @@ export function ShipmentDetail() {
       }})
       .then((response) => setShipment(response.data[0]))
       
-  }}, [0]);
+  }}, [ship_id]);
 
   console.log(shipment);
 
