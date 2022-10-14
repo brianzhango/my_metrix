@@ -57,7 +57,7 @@ app.use(express.static(path.join(__dirname, "/front-end/build")));
 //     res.sendFile(path.resolve(__dirname,  "front-end", "src", "views", "pages", "Login.js"));
 // });
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.resolve(__dirname,  "front-end", "build", "index.html"));
 });
 
