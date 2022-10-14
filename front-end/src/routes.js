@@ -8,7 +8,7 @@ const Error404 = React.lazy(() => import("./views/pages/page404/Page404"));
 
 const routes = [
   { path: "/", exact: true, name: "Home" },
-  { path: "/jobs", exact: true, name: "Job", element: ProjectDisplay },
+  { path: "/jobs", name: "Job", element: ProjectDisplay },
   { path: "/jobs/:job_number", name: "Shipment", element: ShipmentDisplay },
   {
     path: "/jobs/:job_number/:ship_id",
