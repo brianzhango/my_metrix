@@ -29,6 +29,7 @@ export function ShipmentDisplay() {
       .catch(error => {
         console.log(error.response)});
       }
+      console.log(shipment)
     }, [job_number]);
   
 
