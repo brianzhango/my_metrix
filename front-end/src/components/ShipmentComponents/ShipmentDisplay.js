@@ -46,7 +46,7 @@ export function ShipmentDisplay() {
 
   return (
     // [shipments]
-     <h1>hey</h1>
-    // <ShipmentTable item={shipment} />
+    //  <h1>hey</h1>
+    <ShipmentTable item={shipment} />
   );
 }
