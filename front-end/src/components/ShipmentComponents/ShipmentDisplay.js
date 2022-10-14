@@ -46,7 +46,7 @@ export function ShipmentDisplay() {
 
   return (
     // [shipments]
-     console.log("hey")
+     <h1>hey</h1>
     // <ShipmentTable item={shipment} />
   );
 }
