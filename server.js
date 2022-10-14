@@ -32,7 +32,7 @@ app.use("/api/upload", require("./routes/uploadFile"))
 const db = require("./models");
 
 db.mongoose
-  .connect(
+  .connect( process.en.MONGODB_URI ||
     "mongodb+srv://brianozhang:869323246@cluster0.ima9o2n.mongodb.net/?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
@@ -48,19 +48,21 @@ db.mongoose
     process.exit();
   });
 
+if (process.env.NODE_ENV === 'production'){
 // ... other app.use middleware 
-app.use(express.static(path.join(__dirname, "/front-end/public")))
-
-// ...
+app.use(express.static( "front-end/build"));
 
 // // Right before your app.listen(), add this:
 // app.get("/", (req, res) => {
 //     res.sendFile(path.resolve(__dirname,  "front-end", "src", "views", "pages", "Login.js"));
 // });
 
-app.get("/login", (req, res) => {
-  res.sendFile(path.resolve(__dirname,  "front-end", "public", "index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname,  "front-end", "build", "index.html"));
 });
+
+
+}
 
 const PORT = process.env.PORT || 8082;
 
