@@ -7,11 +7,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server.js",
+    "build": "cd front-end && npm run build",
     "install-client": "cd front-end && npm install",
     "client": "npm start --prefix front-end",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node server.js",
-    "build": "npm run install-client && npm run build"
+    "start": "node server.js"
+    
   },
   "repository": {
     "type": "git",
