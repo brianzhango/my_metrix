@@ -40,6 +40,7 @@ export function ShipmentTable(props) {
   return (
     <div>
       <CRow>
+      <CCol></CCol>
         <CCol xs={12}>
           <CCard className="mb-4">
             <CCardHeader>
@@ -88,6 +89,7 @@ export function ShipmentTable(props) {
             </CCardBody>
           </CCard>
         </CCol>
+        <CCol></CCol>
       </CRow>
     </div>
   );

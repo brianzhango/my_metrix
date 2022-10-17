@@ -90,56 +90,62 @@ export function ShipmentDetail() {
     // console.log("hey")
     // <ShipmentTable item = {shipment}/>
     <div>
-      <CCard style={{ width: "30rem" }}>
-        <CCardBody>
-          <CCardTitle style={TittleVars}>
-            <div style={margin}>Shipment ID</div>
-            <strong style={fontSize}>{shipment.ship_id}</strong>
-          </CCardTitle>
-        </CCardBody>
-        <CListGroup flush>
-          <CListGroupItem>
-            <CContainer style={vars}>
-              <CRow>
-                <CCol>Ship Date </CCol>
-                <CCol></CCol>
-                <CCol>
-                  <strong style={fontSize}>{shipment.ship_date} </strong>
-                </CCol>
-              </CRow>
-            </CContainer>
-          </CListGroupItem>
-          <CListGroupItem>
-            <CContainer style={vars}>
-              <CRow>
-                <CCol>Freighter </CCol>
-                <CCol></CCol>
-                <CCol>
-                  <strong style={fontSize}>{shipment.freighter} </strong>
-                </CCol>
-              </CRow>
-            </CContainer>
-          </CListGroupItem>
-          <CListGroupItem>
-            <CContainer style={vars}>
-              <CRow>
-                <CCol>Tracking Number </CCol>
-                <CCol></CCol>
-                <CCol style={padding}>
-                  <CLink href="https://coreui.io" target="_blank">
-                    <strong>{shipment.track_number} </strong>
-                  </CLink>
-                </CCol>
-              </CRow>
-            </CContainer>
-          </CListGroupItem>
-        </CListGroup>
-        <CCardBody style={vars}>
-          <CButton style={color} color="info" size="lg" href={pdfLink}>
-            Packing Slip PDF
-          </CButton>
-        </CCardBody>
-      </CCard>
+      <CRow>
+        <CCol></CCol>
+        <CCol style={{ flex: "auto"}}>
+        <CCard style={{ width: "23rem" }}>
+          <CCardBody>
+            <CCardTitle style={TittleVars}>
+              <div style={margin}>Shipment ID</div>
+              <strong style={fontSize}>{shipment.ship_id}</strong>
+            </CCardTitle>
+          </CCardBody>
+          <CListGroup flush>
+            <CListGroupItem>
+              <CContainer style={vars}>
+                <CRow>
+                  <CCol>Ship Date </CCol>
+                  <CCol></CCol>
+                  <CCol>
+                    <strong style={fontSize}>{shipment.ship_date} </strong>
+                  </CCol>
+                </CRow>
+              </CContainer>
+            </CListGroupItem>
+            <CListGroupItem>
+              <CContainer style={vars}>
+                <CRow>
+                  <CCol>Freighter </CCol>
+                  <CCol></CCol>
+                  <CCol>
+                    <strong style={fontSize}>{shipment.freighter} </strong>
+                  </CCol>
+                </CRow>
+              </CContainer>
+            </CListGroupItem>
+            <CListGroupItem>
+              <CContainer style={vars}>
+                <CRow>
+                  <CCol>Tracking Number </CCol>
+                  <CCol></CCol>
+                  <CCol style={padding}>
+                    <CLink href="https://coreui.io" target="_blank">
+                      <strong>{shipment.track_number} </strong>
+                    </CLink>
+                  </CCol>
+                </CRow>
+              </CContainer>
+            </CListGroupItem>
+          </CListGroup>
+          <CCardBody style={vars}>
+            <CButton style={color} color="info" size="lg" href={pdfLink}>
+              Packing Slip PDF
+            </CButton>
+          </CCardBody>
+        </CCard>
+        </CCol>
+        <CCol></CCol>
+      </CRow>
     </div>
   );
 }
