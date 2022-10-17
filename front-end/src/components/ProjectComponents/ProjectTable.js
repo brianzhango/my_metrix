@@ -34,11 +34,6 @@ export function ProjectTable(props) {
       label: "ETA",
       _props: { scope: "col" },
     },
-    {
-      key: "",
-      label: "Action",
-      _props: { scope: "col" },
-    },
   ];
 
   console.log(props.jobs);
@@ -46,6 +41,14 @@ export function ProjectTable(props) {
   const vars = {
     "--cui-badge-font-size": "0.9em",
   };
+
+  const buttonStyle = {
+    "marginTop": "5px"
+  }
+
+  const tableStyle = {
+    "textAlign": "center"
+  }
 
   return (
     <div>
@@ -96,15 +99,13 @@ export function ProjectTable(props) {
                         <CTableHeaderCell scope="row">
                           {listValue.job_number}
                         </CTableHeaderCell>
-                        <CTableDataCell>
+                        <CTableDataCell style={tableStyle}>
                           <CBadge style={vars} color={badgeColour}>
                             {listValue.status}
                           </CBadge>
-                        </CTableDataCell>
-                        <CTableDataCell>{listValue.ETA}</CTableDataCell>
-                        <CTableDataCell>
                           {button && (
                             <CButton
+                              style={buttonStyle}
                               color="dark"
                               href={link}
                               target="_self"
@@ -116,6 +117,7 @@ export function ProjectTable(props) {
                             </CButton>
                           )}
                         </CTableDataCell>
+                        <CTableDataCell>{listValue.ETA}</CTableDataCell>
                       </CTableRow>
                     );
                   })}
