@@ -11,8 +11,8 @@
     "install-client": "cd front-end && npm install",
     "client": "npm start --prefix front-end",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node server.js"
-    
+    "start": "node server.js",
+    "heroku-postbuild": "npm run install-client && npm run build"
   },
   "repository": {
     "type": "git",
