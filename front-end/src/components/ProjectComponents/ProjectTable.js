@@ -59,7 +59,7 @@ export function ProjectTable(props) {
               <h3>{props.name}</h3>
               <strong>{props.po_ref}</strong>
             </CCardHeader>
-            <CCardBody>
+            <CCardBody  style={{"padding":"8px"}}>
               {/* <CTable striped columns={columns} items={props.jobs} tableHeadProps={{ color: 'dark' }} />    */}
               <CTable
                 responsive
