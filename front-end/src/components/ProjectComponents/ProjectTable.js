@@ -15,6 +15,7 @@ import {
   CBadge,
   CButton,
   CLink,
+  CContainer,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 export function ProjectTable(props) {
@@ -46,13 +47,10 @@ export function ProjectTable(props) {
     "marginTop": "5px"
   }
 
-  const tableStyle = {
-    "textAlign": "center"
-  }
-
   return (
     <div>
       <CRow>
+      <CCol></CCol>
         <CCol xs={12}>
           <CCard className="mb-4">
             <CCardHeader>
@@ -99,10 +97,13 @@ export function ProjectTable(props) {
                         <CTableHeaderCell scope="row">
                           {listValue.job_number}
                         </CTableHeaderCell>
-                        <CTableDataCell style={tableStyle}>
+                        <CTableDataCell>
+                        <CContainer style={{"paddingLeft": "0", "paddingRight": "0"}}>
                           <CBadge style={vars} color={badgeColour}>
                             {listValue.status}
                           </CBadge>
+                        </CContainer>
+                        <CContainer style={{"paddingLeft": "0", "paddingRight": "0"}}>
                           {button && (
                             <CButton
                               style={buttonStyle}
@@ -116,6 +117,7 @@ export function ProjectTable(props) {
                               {button}
                             </CButton>
                           )}
+                        </CContainer>
                         </CTableDataCell>
                         <CTableDataCell>{listValue.ETA}</CTableDataCell>
                       </CTableRow>
@@ -126,6 +128,7 @@ export function ProjectTable(props) {
             </CCardBody>
           </CCard>
         </CCol>
+        <CCol></CCol>
       </CRow>
     </div>
   );
