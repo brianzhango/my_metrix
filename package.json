@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/brianzhango/my_metrix/issues"
   },
-  "homepage": ".",
+  "homepage": "https://my-metrix-test.herokuapp.com",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
