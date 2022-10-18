@@ -82,7 +82,7 @@ export function ProjectTable(props) {
                         : "success";
 
                     let button =
-                      listValue.status === "Awaiting Approval"
+                      listValue.status === "Awaiting Approval" && listValue.approved === false
                         ? "Approve"
                         : listValue.status === "In Transit"
                         ? "Shipment"
