@@ -31,7 +31,7 @@ const AppHeader = () => {
               </CNavLink>
             </CNavItem>
             <CNavItem>
-              <CNavLink herf="https://www.metrixgroup.com.au/contact-details/">
+              <CNavLink href="https://www.metrixgroup.com.au/contact-details/">
                 <CIcon icon={cilPhone} size="xxl" />
               </CNavLink>
             </CNavItem>
