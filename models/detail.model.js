@@ -10,12 +10,12 @@ const jobDetailSchema = mongoose.Schema(
     panel_num: String,
     sqm: String,
     price: String,
-    rgba: Array,
+    rgba: [String],
   },
   { timestamps: true },
   { collection: "job_details" }
 );
 
-const Job_detail = mongoose.model("Job_details", jobDetailSchema);
+const Detail = mongoose.model("Job_details", jobDetailSchema);
 
-module.exports = Job_detail;
+module.exports = Detail;

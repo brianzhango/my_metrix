@@ -91,7 +91,7 @@ export function ProjectTable(props) {
                     let link =
                       button === "Shipment"
                         ? `/jobs/${listValue.job_number}`
-                        : `${listValue.job_number}`;
+                        : `/jobs/${listValue.job_number}/approve`;
                     return (
                       <CTableRow key={index}>
                         <CTableHeaderCell scope="row">

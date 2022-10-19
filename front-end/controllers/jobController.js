@@ -2,7 +2,7 @@ const Job = require("../../models/job.model");
 const Project = require("../../models/project.model");
 const Shipment = require("../../models/shipment.model");
 const User = require('../../models/user.model');
-const Job_detail = require("../../models/job_detail.model");
+const Detail = require("../../models/detail.model");
 
 const asyncHandler = require('express-async-handler')
 
@@ -124,8 +124,8 @@ const shipmentDetail = asyncHandler(async(req, res) => {
 });
 
 const approveJob = asyncHandler(async(req, res) => {
-  await Job_detail.findOne({job_number: req.params.job_number})
-      .then((job_details) => res.json(job_details))
+  await Detail.findOne({ job_number : req.params.job_number })
+      .then((details) => res.json(details))
       .catch((err) => res.status(400).json("Error: " + err));
 
 });
