@@ -250,8 +250,7 @@ export function ApproveJob() {
                            style={{'textAlign':'center'}}
                            >
                            <CCardHeader >
-                               <div><h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3></div>
-                               <div><h4 style={{'color':'rgb(51, 153, 255)'}}>Drawing</h4></div>
+                               <div><h3 style={{'color':'rgb(51, 153, 255)'}}>Approve</h3></div>
                            </CCardHeader>
                            <CCardBody>
                            <CTable style={{'textAlign':'center'}} bordered>
