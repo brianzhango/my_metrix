@@ -31,10 +31,15 @@ export function ApproveJob() {
 
     const [materialStatus, setMaterialStatus] = useState(false)
     const [patternStatus, setPatternStatus] = useState(false)
+    const [colourStatus, setColourStatus] = useState(false)
+    const [priceStatus, setPriceStatus] = useState(false)
+    const [drawingStatus, setDrawingStatus] = useState(false)
 
     const {user} = useSelector((state) => state.auth)
 
     const {job_number} = useParams()
+
+    const pdfLink = `/api/upload/${job_number}.pdf`
 
     useEffect(() => {if(user == null)
         {
@@ -53,12 +58,6 @@ export function ApproveJob() {
           })
          }
         },[0]);
-    
-        console.log(detail)
-
-        const handleClick= () => {
-            setMaterialStatus(true)
-        } 
     
     if (materialStatus == false)
     {
@@ -81,7 +80,7 @@ export function ApproveJob() {
                             <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                             <div>
                             <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
-                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setMaterialStatus(prevstate => !prevstate)}}>Approve</CButton>
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setMaterialStatus(prevstate => !prevstate)}}>Accept</CButton>
                             </div>
                             </CCardBody>
                         </CCard>
@@ -93,7 +92,7 @@ export function ApproveJob() {
         return (
             <>
 
-                <CIcon style={{'marginLeft':'68px'}} icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setMaterialStatus(prevstate => !prevstate)}}/>
+                <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setMaterialStatus(prevstate => !prevstate)}}/>
                 <CContainer style={{'maxWidth': '700px'}}>
                     <div className="row justify-content-md-center">
                         <CCard 
@@ -111,7 +110,7 @@ export function ApproveJob() {
                             <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                             <div>
                             <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
-                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setPatternStatus(prevstate => !prevstate)}}>Approve</CButton>
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setPatternStatus(prevstate => !prevstate)}}>Accept</CButton>
                             </div>
                             </CCardBody>
                         </CCard>
@@ -119,12 +118,12 @@ export function ApproveJob() {
                 </CContainer>
             </>
         )
-    } else {
+    } else if (colourStatus == false){
 
         return (
             <>
 
-                <CIcon style={{'marginLeft':'68px'}} icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setPatternStatus(prevstate => !prevstate)}}/>
+                <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setPatternStatus(prevstate => !prevstate)}}/>
                 <CContainer style={{'maxWidth': '700px'}}>
                     <div className="row justify-content-md-center">
                         <CCard 
@@ -143,7 +142,7 @@ export function ApproveJob() {
                             <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                             <div>
                             <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
-                            <CButton color="primary" variant="outline" size="lg" onClick={handleClick}>Approve</CButton>
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setColourStatus(prevstate => !prevstate)}}>Accept</CButton>
                             </div>
                             </CCardBody>
                         </CCard>
@@ -152,6 +151,82 @@ export function ApproveJob() {
             </>
         )
 
+    } else if (priceStatus == false){
+
+        return(   
+             <>
+                <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setColourStatus(prevstate => !prevstate)}}/>
+                <CContainer style={{'maxWidth': '700px'}}>
+                    <div className="row justify-content-md-center">
+                        <CCard 
+                            className={'mb-3 border-top-info border-top-3'}
+                            style={{'textAlign':'center'}}
+                            >
+                            <CCardHeader >
+                                <div>
+                                        <h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3>
+                                </div>
+                                <div><h4>Price</h4></div>
+                            </CCardHeader>
+                            <CCardBody>
+                            <CTable style={{'textAlign':'center'}}>
+                                <CTableBody style={{'fontSize':'25px'}}>
+                                    <CTableRow>
+                                    <CTableHeaderCell scope="row"><strong>Total Panels</strong></CTableHeaderCell>
+                                    <CTableDataCell><strong>{detail.panel_num}</strong></CTableDataCell>
+                                    </CTableRow>
+                                    <CTableRow color="primary">
+                                    <CTableHeaderCell scope="row"><strong>Total SQM</strong></CTableHeaderCell>
+                                    <CTableDataCell><strong>{detail.sqm}</strong></CTableDataCell>
+                                    </CTableRow>
+                                    <CTableRow color="secondary">
+                                    <CTableHeaderCell scope="row"><strong>Total Ex.GST</strong></CTableHeaderCell>
+                                    <CTableDataCell><strong>${detail.price}</strong></CTableDataCell>
+                                    </CTableRow>
+                                </CTableBody>
+                            </CTable>
+                            <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
+                            <div>
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setPriceStatus(prevstate => !prevstate)}}>Accept</CButton>
+                            </div>
+                            </CCardBody>
+                        </CCard>
+                    </div>
+                </CContainer>
+            </>
+        )
+    } else {
+        return(   
+            <>
+               <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setPriceStatus(prevstate => !prevstate)}}/>
+               <CContainer style={{'maxWidth': '700px'}}>
+                   <div className="row justify-content-md-center">
+                       <CCard 
+                           className={'mb-3 border-top-info border-top-3'}
+                           style={{'textAlign':'center'}}
+                           >
+                           <CCardHeader >
+                               <div>
+                                       <h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3>
+                               </div>
+                               <div><h4>Drawing</h4></div>
+                           </CCardHeader>
+                           <CCardBody>
+                           <CButton style={{'color':'white'}} color="info" size="lg" href={pdfLink}>
+                            Drawing PDF
+                            </CButton>
+                           <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
+                           <div>
+                           <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
+                           <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setDrawingStatus(prevstate => !prevstate)}}>Accept</CButton>
+                           </div>
+                           </CCardBody>
+                       </CCard>
+                   </div>
+               </CContainer>
+           </>
+       )
     }
     
 }
