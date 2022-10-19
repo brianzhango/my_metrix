@@ -13,15 +13,18 @@ import {
     CRow,
     CTable,
     CTableBody,
-    CTableCaption,
     CTableDataCell,
-    CTableHead,
     CTableHeaderCell,
     CTableRow,
     CBadge,
     CButton,
-    CLink,
+    CImage,
     CContainer,
+    CModal,
+    CModalBody,
+    CModalFooter,
+    CModalHeader,
+    CModalTitle
   } from "@coreui/react";
   import CIcon from "@coreui/icons-react";
   import { cilArrowThickLeft } from '@coreui/icons';
@@ -34,10 +37,14 @@ export function ApproveJob() {
     const [colourStatus, setColourStatus] = useState(false)
     const [priceStatus, setPriceStatus] = useState(false)
     const [drawingStatus, setDrawingStatus] = useState(false)
+    const [approveStatus, setApproveStatus] = useState(false)
+    const [visible, setVisible] = useState(false)
 
     const {user} = useSelector((state) => state.auth)
 
     const {job_number} = useParams()
+
+    const navigate = useNavigate()
 
     const pdfLink = `/api/upload/${job_number}.pdf`
 
@@ -72,7 +79,7 @@ export function ApproveJob() {
                             >
                             <CCardHeader >
                                 <div><h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3></div>
-                                <div><h4>Material Type and Thickness</h4></div>
+                                <div><h4 style={{'color':'rgb(51, 153, 255)'}}>Material Type and Thickness</h4></div>
                             </CCardHeader>
                             <CCardBody>
                             <CCardTitle style={{'fontSize':'35px', 'marginBottom':'41px', 'marginTop':'25px'}}><strong>{detail.material_type}</strong></CCardTitle>
@@ -100,10 +107,8 @@ export function ApproveJob() {
                             style={{'textAlign':'center'}}
                             >
                             <CCardHeader >
-                                <div>
-                                        <h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3>
-                                </div>
-                                <div><h4>Pattern</h4></div>
+                                <div><h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3></div>
+                                <div><h4 style={{'color':'rgb(51, 153, 255)'}}>Pattern</h4></div>
                             </CCardHeader>
                             <CCardBody>
                             <CCardTitle style={{'fontSize':'35px', 'marginBottom':'41px', 'marginTop':'25px'}}><strong>{detail.pattern}</strong></CCardTitle>
@@ -131,10 +136,8 @@ export function ApproveJob() {
                             style={{'textAlign':'center'}}
                             >
                             <CCardHeader >
-                                <div>
-                                        <h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3>
-                                </div>
-                                <div><h4>Colour</h4></div>
+                                <div><h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3></div>
+                                <div><h4 style={{'color':'rgb(51, 153, 255)'}}>Colour</h4></div>
                             </CCardHeader>
                             <CCardBody>
                             <CCardTitle style={{'fontSize':'35px', 'marginBottom':'41px', 'marginTop':'25px'}}><strong>{detail.colour}</strong></CCardTitle>
@@ -163,10 +166,8 @@ export function ApproveJob() {
                             style={{'textAlign':'center'}}
                             >
                             <CCardHeader >
-                                <div>
-                                        <h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3>
-                                </div>
-                                <div><h4>Price</h4></div>
+                                <div><h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3></div>
+                                <div><h4 style={{'color':'rgb(51, 153, 255)'}}>Price</h4></div>
                             </CCardHeader>
                             <CCardBody>
                             <CTable style={{'textAlign':'center'}}>
@@ -196,7 +197,7 @@ export function ApproveJob() {
                 </CContainer>
             </>
         )
-    } else {
+    } else if (drawingStatus == false){
         return(   
             <>
                <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setPriceStatus(prevstate => !prevstate)}}/>
@@ -207,10 +208,8 @@ export function ApproveJob() {
                            style={{'textAlign':'center'}}
                            >
                            <CCardHeader >
-                               <div>
-                                       <h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3>
-                               </div>
-                               <div><h4>Drawing</h4></div>
+                               <div><h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3></div>
+                               <div><h4 style={{'color':'rgb(51, 153, 255)'}}>Drawing</h4></div>
                            </CCardHeader>
                            <CCardBody>
                            <CButton style={{'color':'white'}} color="info" size="lg" href={pdfLink}>
@@ -220,6 +219,53 @@ export function ApproveJob() {
                            <div>
                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setDrawingStatus(prevstate => !prevstate)}}>Accept</CButton>
+                           </div>
+                           </CCardBody>
+                       </CCard>
+                   </div>
+               </CContainer>
+           </>
+       )
+    } else {
+        return(   
+            <>
+               <CModal visible={approveStatus} onClose={() => {setVisible(false); navigate('/jobs') }}>
+                    <CModalHeader onClose={() => {setVisible(false); navigate('/jobs')}}>
+                        <CModalTitle>Success</CModalTitle>
+                    </CModalHeader>
+                    <CModalBody style={{'textAlign':'center'}}>
+                        Thanks for approving Job: <strong>{detail.job_number}!</strong>
+                    </CModalBody>
+                    <CModalFooter>
+                        <CButton color="primary" onClick={() => {setVisible(false); navigate('/jobs')}}>
+                        Close
+                        </CButton>
+                    </CModalFooter>
+               </CModal>
+               <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setDrawingStatus(prevstate => !prevstate)}}/>
+               <CContainer style={{'maxWidth': '700px'}}>
+                   <div className="row justify-content-md-center">
+                       <CCard 
+                           className={'mb-3 border-top-info border-top-3'}
+                           style={{'textAlign':'center'}}
+                           >
+                           <CCardHeader >
+                               <div><h3 style={{'color':'rgb(51, 153, 255)'}}>Review</h3></div>
+                               <div><h4 style={{'color':'rgb(51, 153, 255)'}}>Drawing</h4></div>
+                           </CCardHeader>
+                           <CCardBody>
+                           <CTable style={{'textAlign':'center'}} bordered>
+                                <CTableBody style={{'fontSize':'25px'}}>
+                                    <CTableRow style={{'fontSize':'20px'}}>
+                                    <CTableDataCell><strong style={{'color':'red'}}>Decline</strong>: If changes need to be made, please detail this in the pop up window by pressing Decline button.</CTableDataCell>
+                                    <CTableDataCell><strong style={{'color':'blue'}}>Approve</strong>: If the PDF drawings are correct and no further changes are required, please acknowledge by pressing the Approval button below that your order is ready for manufacturing. Changes after this point will not be accepted.</CTableDataCell>
+                                    </CTableRow>
+                                </CTableBody>
+                           </CTable>
+                           <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
+                           <div>
+                           <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
+                           <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setApproveStatus(prevstate => !prevstate)}}>Approve</CButton>
                            </div>
                            </CCardBody>
                        </CCard>
