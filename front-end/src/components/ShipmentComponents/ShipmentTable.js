@@ -16,6 +16,8 @@ import {
   CButton,
   CLink,
 } from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import { cilList, cilMagnifyingGlass } from '@coreui/icons';
 
 export function ShipmentTable(props) {
   console.log(props);
@@ -58,7 +60,8 @@ export function ShipmentTable(props) {
               >
                 <CTableBody>
                   {props.item.map((listValue, index) => {
-                    let link = `/jobs/${listValue.job_number}/${listValue.ship_id}`;
+                    let link = `/jobs/${listValue.job_number}/${listValue.ship_id}`
+                    const trackLink = `https://www.mainfreight.com/en-nz/tracking?trackingnumber=${listValue.track_number}`
                     return (
                       <CTableRow key={index}>
                         <CTableHeaderCell scope="row">
@@ -66,18 +69,18 @@ export function ShipmentTable(props) {
                         </CTableHeaderCell>
                         <CTableDataCell>
                           {" "}
-                          <CLink href="https://coreui.io" target="_blank">
+                          <CLink href={trackLink} target="_blank">
                             {listValue.track_number}
                           </CLink>
                         </CTableDataCell>
                         <CTableDataCell>
                           <CButton
-                            color="dark"
+                            color="primary"
                             href={link}
                             target="_self"
                             size="sm"
-                            shape="rounded-pill"
                           >
+                            <CIcon icon={cilMagnifyingGlass} size="sm" style={{'marginRight':'4px'}}/>
                             View
                           </CButton>
                         </CTableDataCell>
