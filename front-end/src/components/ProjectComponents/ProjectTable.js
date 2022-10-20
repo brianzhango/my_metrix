@@ -18,6 +18,7 @@ import {
   CContainer,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { cilList, cilMagnifyingGlass } from '@coreui/icons';
 export function ProjectTable(props) {
   const columns = [
     {
@@ -96,27 +97,27 @@ export function ProjectTable(props) {
                       <CTableRow key={index}>
                         <CTableHeaderCell scope="row">
                           {listValue.job_number}
+                          <CContainer style={{"paddingLeft": "0", "paddingRight": "0"}}>
+                          {button && (
+                            <CButton
+                              style={buttonStyle}
+                              color="primary"
+                              href={link}
+                              target="_self"
+                              size="sm"
+                            >
+                              {" "}
+                              <CIcon icon={cilMagnifyingGlass} size="sm" style={{'marginRight':'4px'}}/>
+                              View
+                            </CButton>
+                          )}
+                        </CContainer>
                         </CTableHeaderCell>
                         <CTableDataCell>
                         <CContainer style={{"paddingLeft": "0", "paddingRight": "0"}}>
                           <CBadge style={vars} color={badgeColour}>
                             {listValue.status}
                           </CBadge>
-                        </CContainer>
-                        <CContainer style={{"paddingLeft": "0", "paddingRight": "0"}}>
-                          {button && (
-                            <CButton
-                              style={buttonStyle}
-                              color="dark"
-                              href={link}
-                              target="_self"
-                              size="sm"
-                              shape="rounded-pill"
-                            >
-                              {" "}
-                              {button}
-                            </CButton>
-                          )}
                         </CContainer>
                         </CTableDataCell>
                         <CTableDataCell>{listValue.ETA}</CTableDataCell>
