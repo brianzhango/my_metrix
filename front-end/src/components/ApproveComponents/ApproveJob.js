@@ -26,8 +26,9 @@ import {
     CModalHeader,
     CModalTitle
   } from "@coreui/react";
-  import CIcon from "@coreui/icons-react";
-  import { cilArrowThickLeft } from '@coreui/icons';
+import CIcon from "@coreui/icons-react";
+import { cilArrowThickLeft } from '@coreui/icons';
+import emailjs from '@emailjs/browser';
 
 export function ApproveJob() {
     const [detail, setDetail] = useState([])
@@ -47,6 +48,29 @@ export function ApproveJob() {
     const navigate = useNavigate()
 
     const pdfLink = `/api/upload/${job_number}.pdf`
+
+    const emailData ={
+        email : user.email,
+        first_name : user.fName,
+        last_name : user.lName,
+        jobNumber : job_number,
+        phone : user.phone,
+        company : user.company,
+        dateTime : Date().toLocaleString()
+
+    }
+
+    const handleClick = (e) =>{
+        setApproveStatus(prevstate => !prevstate)
+        
+        emailjs.send('service_g5rdo8x', 'template_6v29faf', emailData, 'W2DBytpBdKSHHqY9y')
+        .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+        console.log('FAILED...', error);
+        });
+
+    }
 
     useEffect(() => {if(user == null)
         {
@@ -264,7 +288,7 @@ export function ApproveJob() {
                            <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                            <div>
                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
-                           <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setApproveStatus(prevstate => !prevstate)}}>Approve</CButton>
+                           <CButton color="primary" variant="outline" size="lg" onClick={handleClick}>Approve</CButton>
                            </div>
                            </CCardBody>
                        </CCard>
