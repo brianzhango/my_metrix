@@ -80,6 +80,8 @@ export function ShipmentDetail() {
 
   const pdfLink = `/api/upload/${ship_id}.pdf`
 
+  const trackLink =`https://www.mainfreight.com/en-nz/tracking?trackingnumber=${shipment.track_number}`
+
   // const handleClick = () => {
 
   //   navigate(`/jobs/${job_number}/${ship_id}/file`)
@@ -129,7 +131,7 @@ export function ShipmentDetail() {
                   <CCol>Tracking Number </CCol>
                   <CCol></CCol>
                   <CCol style={padding}>
-                    <CLink href="https://coreui.io" target="_blank">
+                    <CLink href={trackLink} target="_blank">
                       <strong>{shipment.track_number} </strong>
                     </CLink>
                   </CCol>

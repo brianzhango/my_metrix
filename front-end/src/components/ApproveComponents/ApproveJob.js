@@ -27,8 +27,9 @@ import {
     CModalTitle
   } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { cilArrowThickLeft } from '@coreui/icons';
+import { cibFlask, cilArrowThickLeft } from '@coreui/icons';
 import emailjs from '@emailjs/browser';
+import { configs } from "eslint-plugin-prettier";
 
 export function ApproveJob() {
     const [detail, setDetail] = useState([])
@@ -39,7 +40,25 @@ export function ApproveJob() {
     const [priceStatus, setPriceStatus] = useState(false)
     const [drawingStatus, setDrawingStatus] = useState(false)
     const [approveStatus, setApproveStatus] = useState(false)
+    const [declineStatus, setDeclineStatus] = useState(false)
     const [visible, setVisible] = useState(false)
+
+    const [materialDecline, setMaterialDecline] = useState(false)
+    const [patternDecline, setPatternDecline] = useState(false)
+    const [colourDecline, setColourDecline] = useState(false)
+    const [priceDecline, setPriceDecline] = useState(false)
+    const [drawingDecline, setDrawingDecline] = useState(false)
+
+    const [comment, setComment] = useState(
+        {
+            materialComment: "",
+            patternComment: "",
+            colourComment: "",
+            priceComment: "",
+            drawingComment: "",
+            extraComment: ""
+        }
+    )
 
     const {user} = useSelector((state) => state.auth)
 
@@ -60,6 +79,7 @@ export function ApproveJob() {
 
     }
 
+    // Final Approve Button & Send Email
     const handleClick = (e) =>{
         setApproveStatus(prevstate => !prevstate)
         
@@ -72,6 +92,71 @@ export function ApproveJob() {
 
     }
 
+    // Comment Form
+    const handleChange = (e) => {
+        setComment(preComment => {
+            return {
+                ...preComment,
+                [e.target.name]: [e.target.value]
+            }
+        })
+    }
+
+    // Cancel Button Event for Material
+    const handleCancelMaterial = (e) => {
+        setMaterialDecline(prevstate => !prevstate)
+        setComment(preComment => {
+            return {
+                ...preComment,
+                materialComment: ""
+            }
+        })
+    }
+
+    // Cancel Button Event for Pattern
+    const handleCancelPattern = (e) => {
+        setPatternDecline(prevstate => !prevstate)
+        setComment(preComment => {
+            return {
+                ...preComment,
+                patternComment: ""
+            }
+        })
+    }
+
+    // Cancel Button Event for Colour
+    const handleCancelColour = (e) => {
+        setColourDecline(prevstate => !prevstate)
+        setComment(preComment => {
+            return {
+                ...preComment,
+                colourComment: ""
+            }
+        })
+    }
+
+     // Cancel Button Event for Price
+     const handleCancelPrice = (e) => {
+        setPriceDecline(prevstate => !prevstate)
+        setComment(preComment => {
+            return {
+                ...preComment,
+                priceComment: ""
+            }
+        })
+    }
+
+     // Cancel Button Event for Price
+     const handleCancelDrawing = (e) => {
+        setDrawingDecline(prevstate => !prevstate)
+        setComment(preComment => {
+            return {
+                ...preComment,
+                drawingComment: ""
+            }
+        })
+    }
+    
     useEffect(() => {if(user == null)
         {
           navigate('/login')
@@ -110,19 +195,26 @@ export function ApproveJob() {
                             <CCardTitle style={{'fontSize':'35px', 'marginBottom':'41px', 'marginTop':'25px'}}><strong>{detail.thickness}</strong></CCardTitle>
                             <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                             <div>
-                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
+                            {materialDecline ?
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={handleCancelMaterial}>Cancel</CButton> :
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={(e)=>{setMaterialDecline(prevstate => !prevstate)}}>Decline</CButton>
+                            }
+                            {materialDecline ?
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setMaterialStatus(prevstate => !prevstate)}}>Next</CButton> :
                             <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setMaterialStatus(prevstate => !prevstate)}}>Accept</CButton>
+                            }
                             </div>
                             </CCardBody>
                         </CCard>
+                        {materialDecline &&(<textarea onChange={handleChange} name="materialComment" value={comment.materialComment} placeholder="Comments" style={{'height':'90px'}}/>)}
                     </div>
                 </CContainer>
         </>
         )
     } else if (patternStatus == false){
+
         return (
             <>
-
                 <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setMaterialStatus(prevstate => !prevstate)}}/>
                 <CContainer style={{'maxWidth': '700px'}}>
                     <div className="row justify-content-md-center">
@@ -138,11 +230,18 @@ export function ApproveJob() {
                             <CCardTitle style={{'fontSize':'35px', 'marginBottom':'41px', 'marginTop':'25px'}}><strong>{detail.pattern}</strong></CCardTitle>
                             <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                             <div>
-                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
+                            {patternDecline ?
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={handleCancelPattern}>Cancel</CButton> :
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={(e)=>{setPatternDecline(prevstate => !prevstate)}}>Decline</CButton>
+                            }
+                            {patternDecline ?
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setPatternStatus(prevstate => !prevstate)}}>Next</CButton> :
                             <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setPatternStatus(prevstate => !prevstate)}}>Accept</CButton>
+                            }
                             </div>
                             </CCardBody>
                         </CCard>
+                        {patternDecline &&(<textarea onChange={handleChange} name="patternComment" value={comment.patternComment} placeholder="Comments" style={{'height':'90px'}}/>)}
                     </div>
                 </CContainer>
             </>
@@ -151,7 +250,6 @@ export function ApproveJob() {
 
         return (
             <>
-
                 <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setPatternStatus(prevstate => !prevstate)}}/>
                 <CContainer style={{'maxWidth': '700px'}}>
                     <div className="row justify-content-md-center">
@@ -168,11 +266,18 @@ export function ApproveJob() {
                             <div style={{'backgroundColor':`rgba(${detail.rgba[0]}, ${detail.rgba[1]}, ${detail.rgba[2]}, ${detail.rgba[3]})`, 'height':'200px'}}></div>
                             <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                             <div>
-                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
+                            {colourDecline ?
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={handleCancelColour}>Cancel</CButton> :
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={(e)=>{setColourDecline(prevstate => !prevstate)}}>Decline</CButton>
+                            }
+                            {colourDecline ?
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setColourStatus(prevstate => !prevstate)}}>Next</CButton> :
                             <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setColourStatus(prevstate => !prevstate)}}>Accept</CButton>
+                            }
                             </div>
                             </CCardBody>
                         </CCard>
+                        {colourDecline &&(<textarea onChange={handleChange} name="colourComment" value={comment.colourComment} placeholder="Comments" style={{'height':'90px'}}/>)}
                     </div>
                 </CContainer>
             </>
@@ -212,16 +317,24 @@ export function ApproveJob() {
                             </CTable>
                             <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                             <div>
-                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
+                            {priceDecline ?
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={handleCancelPrice}>Cancel</CButton> :
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={(e)=>{setPriceDecline(prevstate => !prevstate)}}>Decline</CButton>
+                            }
+                            {priceDecline ?
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setPriceStatus(prevstate => !prevstate)}}>Next</CButton> :
                             <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setPriceStatus(prevstate => !prevstate)}}>Accept</CButton>
+                            }
                             </div>
                             </CCardBody>
                         </CCard>
+                        {priceDecline &&(<textarea onChange={handleChange} name="priceComment" value={comment.priceComment} placeholder="Comments" style={{'height':'90px'}}/>)}
                     </div>
                 </CContainer>
             </>
         )
     } else if (drawingStatus == false){
+
         return(   
             <>
                <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setPriceStatus(prevstate => !prevstate)}}/>
@@ -241,16 +354,23 @@ export function ApproveJob() {
                             </CButton>
                            <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                            <div>
-                           <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
-                           <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setDrawingStatus(prevstate => !prevstate)}}>Accept</CButton>
+                           {drawingDecline ?
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={handleCancelDrawing}>Cancel</CButton> :
+                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={(e)=>{setDrawingDecline(prevstate => !prevstate)}}>Decline</CButton>
+                            }
+                            {drawingDecline ?
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setDrawingStatus(prevstate => !prevstate)}}>Next</CButton> :
+                            <CButton color="primary" variant="outline" size="lg" onClick={(e)=>{setDrawingStatus(prevstate => !prevstate)}}>Accept</CButton>
+                            }
                            </div>
                            </CCardBody>
                        </CCard>
+                       {drawingDecline &&(<textarea onChange={handleChange} name="drawingComment" value={comment.drawingComment} placeholder="Comments" style={{'height':'90px'}}/>)}
                    </div>
                </CContainer>
            </>
        )
-    } else {
+    } else if (declineStatus == false){
         return(   
             <>
                <CModal visible={approveStatus} onClose={() => {setVisible(false); navigate('/jobs') }}>
@@ -287,15 +407,51 @@ export function ApproveJob() {
                            </CTable>
                            <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                            <div>
-                           <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}}>Decline</CButton>
+                           <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={(e)=>{setDeclineStatus(prevstate => !prevstate)}}>Decline</CButton>
                            <CButton color="primary" variant="outline" size="lg" onClick={handleClick}>Approve</CButton>
                            </div>
                            </CCardBody>
                        </CCard>
                    </div>
+
                </CContainer>
            </>
        )
+    } else {
+        return(
+            <>
+                <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setDeclineStatus(prevstate => !prevstate)}}/>
+                <CContainer style={{'maxWidth': '700px'}}>
+                <div className="row justify-content-md-center">
+                    <CCard 
+                        className={'mb-3 border-top-info border-top-3'}
+                        style={{'textAlign':'center'}}
+                        >
+                        <CCardHeader >
+                            <div><h3 style={{'color':'rgb(51, 153, 255)'}}>Decline</h3></div>
+                        </CCardHeader>
+                        <CCardBody>
+                        <CTable style={{'textAlign':'center'}} bordered>
+                            <CTableBody style={{'fontSize':'25px'}}>
+                                <CTableRow style={{'fontSize':'20px'}}>
+                                <CTableHeaderCell>Material Type and Thickness</CTableHeaderCell>
+                                <CTableDataCell>{comment.materialComment}</CTableDataCell>
+                                </CTableRow>
+                            </CTableBody>
+                        </CTable>
+                        <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
+                        <div>
+                        <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={(e)=>{setDeclineStatus(prevstate => !prevstate)}}>Cancel</CButton>
+                        <CButton color="primary" variant="outline" size="lg" >Decline</CButton>
+                        </div>
+                        </CCardBody>
+                    </CCard>
+                {declineStatus &&(<textarea onChange={handleChange} name="extraComment" value={comment.extraComment} placeholder="Extra Comments" style={{'height':'90px'}}/>)}
+                </div>
+
+                </CContainer>
+            </>
+        )
     }
     
 }
