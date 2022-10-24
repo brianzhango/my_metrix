@@ -49,6 +49,9 @@ export function ApproveJob() {
     const [priceDecline, setPriceDecline] = useState(false)
     const [drawingDecline, setDrawingDecline] = useState(false)
 
+    // If customers decline any of the parts, the final approve button will be disabled
+    const buttonDisableStatus = materialDecline || patternDecline || colourDecline || priceDecline || drawingDecline ? true : false
+
     const [comment, setComment] = useState(
         {
             materialComment: "",
@@ -68,6 +71,7 @@ export function ApproveJob() {
 
     const pdfLink = `/api/upload/${job_number}.pdf`
 
+    // For approve 
     const emailData ={
         email : user.email,
         first_name : user.fName,
@@ -79,11 +83,41 @@ export function ApproveJob() {
 
     }
 
+    // For decline
+
+    const emailDataDecline ={
+        first_name : user.fName,
+        last_name : user.lName,
+        jobNumber : job_number,
+        phone : user.phone,
+        company : user.company,
+        dateTime : Date().toLocaleString(),
+        materialComment: comment.materialComment,
+        patternComment: comment.patternComment,
+        colourComment: comment.colourComment,
+        priceComment: comment.priceComment,
+        drawingComment: comment.drawingComment,
+        extraComment: comment.extraComment
+
+    }
+
     // Final Approve Button & Send Email
     const handleClick = (e) =>{
         setApproveStatus(prevstate => !prevstate)
         
         emailjs.send('service_g5rdo8x', 'template_6v29faf', emailData, 'W2DBytpBdKSHHqY9y')
+        .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+        console.log('FAILED...', error);
+        });
+
+    }
+
+    const handleDecline = (e) =>{
+        setVisible(prevstate => !prevstate)
+
+        emailjs.send('service_g5rdo8x', 'template_jkx97ng', emailDataDecline, 'W2DBytpBdKSHHqY9y')
         .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
         }, function(error) {
@@ -146,7 +180,7 @@ export function ApproveJob() {
         })
     }
 
-     // Cancel Button Event for Price
+     // Cancel Button Event for Drawing
      const handleCancelDrawing = (e) => {
         setDrawingDecline(prevstate => !prevstate)
         setComment(preComment => {
@@ -156,6 +190,7 @@ export function ApproveJob() {
             }
         })
     }
+
     
     useEffect(() => {if(user == null)
         {
@@ -408,7 +443,7 @@ export function ApproveJob() {
                            <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                            <div>
                            <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={(e)=>{setDeclineStatus(prevstate => !prevstate)}}>Decline</CButton>
-                           <CButton color="primary" variant="outline" size="lg" onClick={handleClick}>Approve</CButton>
+                           <CButton color="primary" variant="outline" size="lg" onClick={handleClick} disabled={buttonDisableStatus}>Approve</CButton>
                            </div>
                            </CCardBody>
                        </CCard>
@@ -419,7 +454,21 @@ export function ApproveJob() {
        )
     } else {
         return(
-            <>
+            <>  
+                <CModal visible={visible} onClose={() => {setVisible(false); navigate('/jobs') }}>
+                    <CModalHeader onClose={() => {setVisible(false); navigate('/jobs')}}>
+                        <CModalTitle>Declined</CModalTitle>
+                    </CModalHeader>
+                    <CModalBody style={{'textAlign':'center'}}>
+                        Your Job <strong>{detail.job_number} has been declined!</strong>
+                         We will get back to you soon!
+                    </CModalBody>
+                    <CModalFooter>
+                        <CButton color="primary" onClick={() => {setVisible(false); navigate('/jobs')}}>
+                        Close
+                        </CButton>
+                    </CModalFooter>
+               </CModal>
                 <CIcon icon={ cilArrowThickLeft } size="3xl" onClick={(e)=>{setDeclineStatus(prevstate => !prevstate)}}/>
                 <CContainer style={{'maxWidth': '700px'}}>
                 <div className="row justify-content-md-center">
@@ -433,16 +482,33 @@ export function ApproveJob() {
                         <CCardBody>
                         <CTable style={{'textAlign':'center'}} bordered>
                             <CTableBody style={{'fontSize':'25px'}}>
+                                {/* Decline Comments */}
                                 <CTableRow style={{'fontSize':'20px'}}>
                                 <CTableHeaderCell>Material Type and Thickness</CTableHeaderCell>
                                 <CTableDataCell>{comment.materialComment}</CTableDataCell>
+                                </CTableRow>
+                                <CTableRow style={{'fontSize':'20px'}}>
+                                <CTableHeaderCell>Pattern</CTableHeaderCell>
+                                <CTableDataCell>{comment.patternComment}</CTableDataCell>
+                                </CTableRow>
+                                <CTableRow style={{'fontSize':'20px'}}>
+                                <CTableHeaderCell>Colour</CTableHeaderCell>
+                                <CTableDataCell>{comment.colourComment}</CTableDataCell>
+                                </CTableRow>
+                                <CTableRow style={{'fontSize':'20px'}}>
+                                <CTableHeaderCell>Price</CTableHeaderCell>
+                                <CTableDataCell>{comment.priceComment}</CTableDataCell>
+                                </CTableRow>
+                                <CTableRow style={{'fontSize':'20px'}}>
+                                <CTableHeaderCell>Drawing</CTableHeaderCell>
+                                <CTableDataCell>{comment.drawingComment}</CTableDataCell>
                                 </CTableRow>
                             </CTableBody>
                         </CTable>
                         <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px'}}></hr>
                         <div>
                         <CButton color="danger" variant="outline" size="lg" style={{'marginRight':'100px'}} onClick={(e)=>{setDeclineStatus(prevstate => !prevstate)}}>Cancel</CButton>
-                        <CButton color="primary" variant="outline" size="lg" >Decline</CButton>
+                        <CButton color="primary" variant="outline" size="lg" onClick={handleDecline}>Decline</CButton>
                         </div>
                         </CCardBody>
                     </CCard>
