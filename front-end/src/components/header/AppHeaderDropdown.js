@@ -31,6 +31,8 @@ const AppHeaderDropdown = () => {
 
   }
 
+  const Link = `/users/${user.id}`
+  
   return (
     <CDropdown variant="nav-item">
       <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
@@ -40,7 +42,7 @@ const AppHeaderDropdown = () => {
         <CDropdownHeader className="bg-light fw-semibold py-2">
           Settings
         </CDropdownHeader>
-        <CDropdownItem href="#">
+        <CDropdownItem href={Link}>
           <CIcon icon={cilUser} className="me-2" />
           Profile
         </CDropdownItem>
