@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ProfileCard } from "./ProfileCard";
 import { AddressCard } from "./AddressCard";
+import { NotificationCard } from "./NotificationCard"; 
 
 import {
   CCard,
@@ -25,7 +26,27 @@ import {
 } from "@coreui/react";
 
 export function ProfileInfo() {
-  
+
+  const {user} = useSelector((state) => state.auth)
+
+    const navigate = useNavigate()
+
+    const { user_id } = useParams();
+
+    useEffect(() => {
+        if(user == null)
+        {
+          navigate('/login')
+        }
+        else {
+        axios
+          .get(`/api/users/${user_id}`, { headers: {
+            'Authorization': 'Bearer ' + user.token
+          }})
+          .then((response) => localStorage.setItem('address', JSON.stringify(response.data)))
+
+      }}, [user_id]);
+
   const [status, setStatus] = useState({
     pstatus: true,
     astatus: false,
@@ -80,7 +101,7 @@ export function ProfileInfo() {
             </CNavItem>
       </CNav>
       {status.pstatus ? <ProfileCard />
-        : status.astatus ? <AddressCard /> : <ProfileCard />}
+        : status.astatus ? <AddressCard /> : <NotificationCard />}
     </>
   )
 }

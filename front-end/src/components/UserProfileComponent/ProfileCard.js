@@ -49,7 +49,7 @@ export function ProfileCard() {
     return(
         <>
         <CRow>
-        <CCard>
+        <CCard style={{'maxWidth':'700px'}}>
           <CListGroup flush>
             <CListGroupItem>
               <CContainer style={vars}>

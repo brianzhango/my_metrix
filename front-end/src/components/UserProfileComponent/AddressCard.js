@@ -19,27 +19,7 @@ export function AddressCard() {
 
     const {user} = useSelector((state) => state.auth)
 
-    const [address, setAddress] = useState([]);
-
-    const navigate = useNavigate()
-
-    const { user_id } = useParams();
-
-    useEffect(() => {
-        if(user == null)
-        {
-          navigate('/login')
-        }
-        else {
-        axios
-          .get(`/api/users/${user_id}`, { headers: {
-            'Authorization': 'Bearer ' + user.token
-          }})
-          .then((response) => setAddress(response.data))
-
-      }}, [user_id]);
-
-      console.log(address)
+    let address = JSON.parse(localStorage.getItem('address'))
 
     const vars = {
         textAlign: "center",
@@ -69,7 +49,7 @@ export function AddressCard() {
     return(
         <>
         <CRow>
-        <CCard>
+        <CCard style={{'maxWidth':'700px'}}>
           <CListGroup flush>
             <CListGroupItem>
               <CContainer style={vars}>
