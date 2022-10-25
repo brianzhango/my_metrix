@@ -52,52 +52,52 @@ export function AddressCard() {
         <CCard style={{'maxWidth':'700px'}}>
           <CListGroup flush>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={address.unit_num} placeholder="Unit Number" readOnly></CFormInput>
+                    <CFormInput label="Unit Number" type="text" value={address.unit_num} placeholder="Unit Number" readOnly></CFormInput>
                   </CCol>
                   <CCol>
-                    <CFormInput type="text" value={address.street_num} placeholder="Street Number" readOnly></CFormInput>
+                    <CFormInput label="Street Number" type="text" value={address.street_num} placeholder="Street Number" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
             </CListGroupItem>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={address.street_name} placeholder="Street Name" readOnly></CFormInput>
+                    <CFormInput label="Street Name" type="text" value={address.street_name} placeholder="Street Name" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
             </CListGroupItem>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={address.suburb} placeholder="Suburb" readOnly></CFormInput>
+                    <CFormInput label="Suburb" type="text" value={address.suburb} placeholder="Suburb" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
             </CListGroupItem>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={address.state} placeholder="State" readOnly></CFormInput>
+                    <CFormInput label="State" type="text" value={address.state} placeholder="State" readOnly></CFormInput>
                   </CCol>
                   <CCol>
-                    <CFormInput type="text" value={address.postcode} placeholder="Postcode" readOnly></CFormInput>
+                    <CFormInput label="Postcode" type="text" value={address.postcode} placeholder="Postcode" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
             </CListGroupItem>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={address.country} placeholder="Country" readOnly></CFormInput>
+                    <CFormInput label="Country" type="text" value={address.country} placeholder="Country" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>

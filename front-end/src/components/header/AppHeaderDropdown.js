@@ -42,7 +42,7 @@ const AppHeaderDropdown = () => {
         <CDropdownHeader className="bg-light fw-semibold py-2">
           Settings
         </CDropdownHeader>
-        <CDropdownItem href={Link}>
+        <CDropdownItem href={Link} style={{'paddingTop':'10px'}}>
           <CIcon icon={cilUser} className="me-2" />
           Profile
         </CDropdownItem>

@@ -52,52 +52,52 @@ export function ProfileCard() {
         <CCard style={{'maxWidth':'700px'}}>
           <CListGroup flush>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer >
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={user.fName} placeholder="First Name" readOnly></CFormInput>
+                    <CFormInput label="First Name" type="text" value={user.fName} placeholder="First Name" readOnly></CFormInput>
                   </CCol>
                   <CCol>
-                    <CFormInput type="text" value={user.lName} placeholder="Last Name" readOnly></CFormInput>
+                    <CFormInput label="Last Name" type="text" value={user.lName} placeholder="Last Name" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
             </CListGroupItem>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={user.department} placeholder="Department" readOnly></CFormInput>
+                    <CFormInput label="Department" type="text" value={user.department} placeholder="Department" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
             </CListGroupItem>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={user.company} placeholder="Company" readOnly></CFormInput>
+                    <CFormInput label="Company" type="text" value={user.company} placeholder="Company" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
             </CListGroupItem>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={user.phone} placeholder="Mobile Phone" readOnly></CFormInput>
+                    <CFormInput label="Mobile Phone" type="text" value={user.phone} placeholder="Mobile Phone" readOnly></CFormInput>
                   </CCol>
                   <CCol>
-                    <CFormInput type="text" value={user.workPhone} placeholder="Work Phone" readOnly></CFormInput>
+                    <CFormInput label="Work Phone" type="text" value={user.workPhone} placeholder="Work Phone" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
             </CListGroupItem>
             <CListGroupItem>
-              <CContainer style={vars}>
+              <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput type="text" value={user.email} placeholder="Email" readOnly></CFormInput>
+                    <CFormInput label="Email" type="text" value={user.email} placeholder="Email" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
