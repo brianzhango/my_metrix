@@ -19,32 +19,9 @@ export function ProfileCard() {
 
     const {user} = useSelector((state) => state.auth)
 
-    const vars = {
-        textAlign: "center",
+    const labelWeight = {
+        fontWeight: "bold",
       };
-    
-      const TittleVars = {
-        textAlign: "center",
-        marginBottom: "0px",
-      };
-    
-      const fontSize = {
-        fontSize: "lager",
-      };
-    
-      const color = {
-        color: "white",
-      };
-    
-      const padding = {
-        paddingTop: "7px",
-      };
-    
-      const margin = {
-        marginBottom: "4px",
-      };
-      
-      const fullName = `${user.fName} ${user.lName}`
 
     return(
         <>
@@ -55,11 +32,11 @@ export function ProfileCard() {
               <CContainer >
                 <CRow>
                   <CCol>
-                    <label className="form-label" style={{'fontWeight':'bold'}}>First Name</label>
+                    <label className="form-label" style={labelWeight}>First Name</label>
                     <CFormInput type="text" value={user.fName} placeholder="First Name" readOnly></CFormInput>
                   </CCol>
                   <CCol>
-                    <label className="form-label" style={{'fontWeight':'bold'}}>Last Name</label>
+                    <label className="form-label" style={labelWeight}>Last Name</label>
                     <CFormInput type="text" value={user.lName} placeholder="Last Name" readOnly></CFormInput>
                   </CCol>
                 </CRow>
@@ -69,7 +46,7 @@ export function ProfileCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <label className="form-label" style={{'fontWeight':'bold'}}>Department</label>
+                    <label className="form-label" style={labelWeight}>Department</label>
                     <CFormInput type="text" value={user.department} placeholder="Department" readOnly></CFormInput>
                   </CCol>
                 </CRow>
@@ -79,7 +56,7 @@ export function ProfileCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <label className="form-label" style={{'fontWeight':'bold'}}>Company</label>
+                    <label className="form-label" style={labelWeight}>Company</label>
                     <CFormInput type="text" value={user.company} placeholder="Company" readOnly></CFormInput>
                   </CCol>
                 </CRow>
@@ -89,11 +66,11 @@ export function ProfileCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <label className="form-label" style={{'fontWeight':'bold'}}>Mobile Phone</label>
+                    <label className="form-label" style={labelWeight}>Mobile Phone</label>
                     <CFormInput type="text" value={user.phone} placeholder="Mobile Phone" readOnly></CFormInput>
                   </CCol>
                   <CCol>
-                    <label className="form-label" style={{'fontWeight':'bold'}}>Work Phone</label>
+                    <label className="form-label" style={labelWeight}>Work Phone</label>
                     <CFormInput type="text" value={user.workPhone} placeholder="Work Phone" readOnly></CFormInput>
                   </CCol>
                 </CRow>
@@ -103,7 +80,7 @@ export function ProfileCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <label className="form-label" style={{'fontWeight':'bold'}}>Email</label>
+                    <label className="form-label" style={labelWeight}>Email</label>
                     <CFormInput type="text" value={user.email} placeholder="Email" readOnly></CFormInput>
                   </CCol>
                 </CRow>
