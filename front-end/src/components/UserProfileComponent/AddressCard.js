@@ -55,19 +55,12 @@ export function AddressCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput label="Unit Number" type="text" value={address.unit_num} placeholder="Unit Number" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Unit Number</label>
+                    <CFormInput type="text" value={address.unit_num} placeholder="Unit Number" readOnly></CFormInput>
                   </CCol>
                   <CCol>
-                    <CFormInput label="Street Number" type="text" value={address.street_num} placeholder="Street Number" readOnly></CFormInput>
-                  </CCol>
-                </CRow>
-              </CContainer>
-            </CListGroupItem>
-            <CListGroupItem>
-              <CContainer>
-                <CRow>
-                  <CCol>
-                    <CFormInput label="Street Name" type="text" value={address.street_name} placeholder="Street Name" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Street Number</label>
+                    <CFormInput type="text" value={address.street_num} placeholder="Street Number" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -76,7 +69,8 @@ export function AddressCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput label="Suburb" type="text" value={address.suburb} placeholder="Suburb" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Street Name</label>
+                    <CFormInput type="text" value={address.street_name} placeholder="Street Name" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -85,10 +79,8 @@ export function AddressCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput label="State" type="text" value={address.state} placeholder="State" readOnly></CFormInput>
-                  </CCol>
-                  <CCol>
-                    <CFormInput label="Postcode" type="text" value={address.postcode} placeholder="Postcode" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Suburb</label>
+                    <CFormInput type="text" value={address.suburb} placeholder="Suburb" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -97,7 +89,22 @@ export function AddressCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput label="Country" type="text" value={address.country} placeholder="Country" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>State</label>
+                    <CFormInput type="text" value={address.state} placeholder="State" readOnly></CFormInput>
+                  </CCol>
+                  <CCol>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Postcode</label>
+                    <CFormInput type="text" value={address.postcode} placeholder="Postcode" readOnly></CFormInput>
+                  </CCol>
+                </CRow>
+              </CContainer>
+            </CListGroupItem>
+            <CListGroupItem>
+              <CContainer>
+                <CRow>
+                  <CCol>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Country</label>
+                    <CFormInput type="text" value={address.country} placeholder="Country" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>

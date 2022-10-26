@@ -55,19 +55,12 @@ export function ProfileCard() {
               <CContainer >
                 <CRow>
                   <CCol>
-                    <CFormInput label="First Name" type="text" value={user.fName} placeholder="First Name" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>First Name</label>
+                    <CFormInput type="text" value={user.fName} placeholder="First Name" readOnly></CFormInput>
                   </CCol>
                   <CCol>
-                    <CFormInput label="Last Name" type="text" value={user.lName} placeholder="Last Name" readOnly></CFormInput>
-                  </CCol>
-                </CRow>
-              </CContainer>
-            </CListGroupItem>
-            <CListGroupItem>
-              <CContainer>
-                <CRow>
-                  <CCol>
-                    <CFormInput label="Department" type="text" value={user.department} placeholder="Department" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Last Name</label>
+                    <CFormInput type="text" value={user.lName} placeholder="Last Name" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -76,7 +69,8 @@ export function ProfileCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput label="Company" type="text" value={user.company} placeholder="Company" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Department</label>
+                    <CFormInput type="text" value={user.department} placeholder="Department" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -85,10 +79,8 @@ export function ProfileCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput label="Mobile Phone" type="text" value={user.phone} placeholder="Mobile Phone" readOnly></CFormInput>
-                  </CCol>
-                  <CCol>
-                    <CFormInput label="Work Phone" type="text" value={user.workPhone} placeholder="Work Phone" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Company</label>
+                    <CFormInput type="text" value={user.company} placeholder="Company" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -97,7 +89,22 @@ export function ProfileCard() {
               <CContainer>
                 <CRow>
                   <CCol>
-                    <CFormInput label="Email" type="text" value={user.email} placeholder="Email" readOnly></CFormInput>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Mobile Phone</label>
+                    <CFormInput type="text" value={user.phone} placeholder="Mobile Phone" readOnly></CFormInput>
+                  </CCol>
+                  <CCol>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Work Phone</label>
+                    <CFormInput type="text" value={user.workPhone} placeholder="Work Phone" readOnly></CFormInput>
+                  </CCol>
+                </CRow>
+              </CContainer>
+            </CListGroupItem>
+            <CListGroupItem>
+              <CContainer>
+                <CRow>
+                  <CCol>
+                    <label className="form-label" style={{'fontWeight':'bold'}}>Email</label>
+                    <CFormInput type="text" value={user.email} placeholder="Email" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
