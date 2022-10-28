@@ -19,7 +19,8 @@ export function AddressCard() {
 
     const {user} = useSelector((state) => state.auth)
 
-    let address = JSON.parse(localStorage.getItem('address'))
+    let address = JSON.parse(localStorage.getItem('profile'))
+
     
       const labelWeight = {
         fontWeight: "bold",
@@ -36,11 +37,11 @@ export function AddressCard() {
                 <CRow>
                   <CCol>
                     <label className="form-label" style={labelWeight}>Unit Number</label>
-                    <CFormInput type="text" value={address.unit_num} placeholder="Unit Number" readOnly></CFormInput>
+                    <CFormInput type="text" value={address[0].unit_num} placeholder="Unit Number" readOnly></CFormInput>
                   </CCol>
                   <CCol>
                     <label className="form-label" style={labelWeight}>Street Number</label>
-                    <CFormInput type="text" value={address.street_num} placeholder="Street Number" readOnly></CFormInput>
+                    <CFormInput type="text" value={address[0].street_num} placeholder="Street Number" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -50,7 +51,7 @@ export function AddressCard() {
                 <CRow>
                   <CCol>
                     <label className="form-label" style={labelWeight}>Street Name</label>
-                    <CFormInput type="text" value={address.street_name} placeholder="Street Name" readOnly></CFormInput>
+                    <CFormInput type="text" value={address[0].street_name} placeholder="Street Name" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -60,7 +61,7 @@ export function AddressCard() {
                 <CRow>
                   <CCol>
                     <label className="form-label" style={labelWeight}>Suburb</label>
-                    <CFormInput type="text" value={address.suburb} placeholder="Suburb" readOnly></CFormInput>
+                    <CFormInput type="text" value={address[0].suburb} placeholder="Suburb" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -70,11 +71,11 @@ export function AddressCard() {
                 <CRow>
                   <CCol>
                     <label className="form-label" style={labelWeight}>State</label>
-                    <CFormInput type="text" value={address.state} placeholder="State" readOnly></CFormInput>
+                    <CFormInput type="text" value={address[0].state} placeholder="State" readOnly></CFormInput>
                   </CCol>
                   <CCol>
                     <label className="form-label" style={labelWeight}>Postcode</label>
-                    <CFormInput type="text" value={address.postcode} placeholder="Postcode" readOnly></CFormInput>
+                    <CFormInput type="text" value={address[0].postcode} placeholder="Postcode" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -84,7 +85,7 @@ export function AddressCard() {
                 <CRow>
                   <CCol>
                     <label className="form-label" style={labelWeight}>Country</label>
-                    <CFormInput type="text" value={address.country} placeholder="Country" readOnly></CFormInput>
+                    <CFormInput type="text" value={address[0].country} placeholder="Country" readOnly></CFormInput>
                   </CCol>
                 </CRow>
               </CContainer>

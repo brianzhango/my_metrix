@@ -6,6 +6,7 @@ const API_URL = `/api/users/`
 const logout = () => {
     localStorage.removeItem('user')
     localStorage.removeItem('address')
+    localStorage.removeItem('profile')
 
 }
 

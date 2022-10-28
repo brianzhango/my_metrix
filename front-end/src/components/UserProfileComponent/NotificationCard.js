@@ -30,6 +30,37 @@ export function NotificationCard() {
         height:'1.5em'
     };
 
+    let profileSession = JSON.parse(localStorage.getItem('profile'))
+
+    let profile = profileSession[0]
+
+    const [subscribe, setSubscribe] = useState ({
+      ordEmail: profile.notifications.ordEmail,
+      ordSms: profile.notifications.ordSms,
+      draEmail: profile.notifications.draEmail,
+      draSms: profile.notifications.draSms,
+      awaSms: profile.notifications.awaSms,
+      awaEmail: profile.notifications.awaEmail,
+      proSms: profile.notifications.proSms,
+      proEmail: profile.notifications.proEmail,
+      preSms: profile.notifications.preSms,
+      preEmail: profile.notifications.preEmail,
+      traSms: profile.notifications.traSms,
+      traEmail: profile.notifications.traEmail,
+
+    })
+
+    const handleChange = (e) => {
+
+      setSubscribe(presub => {
+        return {
+          ...presub,
+          [e.target.name] : e.target.checked
+        }
+      })
+
+    }
+
     return(
         <>
         <CRow>
@@ -49,28 +80,13 @@ export function NotificationCard() {
               <hr style={{'borderColor':'rgb(51, 153, 255)', 'borderWidth':'3px', 'marginTop': '0'}}></hr>
                 <CRow>
                   <CCol>
-                    <CFormLabel htmlFor="staticEmail" className="col-sm-2 col-form-label">Order Received</CFormLabel>
+                    <CFormLabel className="col-form-label">Order Received</CFormLabel>
                   </CCol>
                   <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
+                    <CFormCheck id="ordEmail" name="ordEmail" checked={subscribe.ordEmail} onChange={handleChange} style={checkBoxStyle}/>
                   </CCol>
                   <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
-                  </CCol>
-                </CRow>
-              </CContainer>
-            </CListGroupItem>
-            <CListGroupItem>
-              <CContainer style={vars}>
-              <CRow>
-                  <CCol>
-                    <CFormLabel htmlFor="staticEmail" className="col-sm-2 col-form-label">Drafting</CFormLabel>
-                  </CCol>
-                  <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
-                  </CCol>
-                  <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
+                    <CFormCheck id="ordSms" name="ordSms" checked={subscribe.ordSms} onChange={handleChange} style={checkBoxStyle}/>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -79,28 +95,13 @@ export function NotificationCard() {
               <CContainer style={vars}>
               <CRow>
                   <CCol>
-                    <CFormLabel htmlFor="staticEmail" className="col-sm-2 col-form-label">Awaiting Approval</CFormLabel>
+                    <CFormLabel className="col-form-label">Drafting</CFormLabel>
                   </CCol>
                   <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
+                    <CFormCheck id="draEmail" name="draEmail" checked={subscribe.draEmail} onChange={handleChange} style={checkBoxStyle}/>
                   </CCol>
                   <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
-                  </CCol>
-                </CRow>
-              </CContainer>
-            </CListGroupItem>
-            <CListGroupItem>
-              <CContainer style={vars}>
-              <CRow>
-                  <CCol>
-                    <CFormLabel htmlFor="staticEmail" className="col-sm-2 col-form-label">In Production</CFormLabel>
-                  </CCol>
-                  <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
-                  </CCol>
-                  <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
+                    <CFormCheck id="draSms" name="draSms" checked={subscribe.draSms} onChange={handleChange} style={checkBoxStyle}/>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -109,13 +110,13 @@ export function NotificationCard() {
               <CContainer style={vars}>
               <CRow>
                   <CCol>
-                    <CFormLabel htmlFor="staticEmail" className="col-sm-2 col-form-label">Preparing Shipment</CFormLabel>
+                    <CFormLabel className="col-form-label">Awaiting Approval</CFormLabel>
                   </CCol>
                   <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
+                    <CFormCheck id="awaEmail" name="awaEmail" checked={subscribe.awaEmail} onChange={handleChange} style={checkBoxStyle}/>
                   </CCol>
                   <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
+                    <CFormCheck id="awaSms" name="awaSms" checked={subscribe.awaSms} onChange={handleChange} style={checkBoxStyle}/>
                   </CCol>
                 </CRow>
               </CContainer>
@@ -124,13 +125,43 @@ export function NotificationCard() {
               <CContainer style={vars}>
               <CRow>
                   <CCol>
-                    <CFormLabel htmlFor="staticEmail" className="col-sm-2 col-form-label">In Transit</CFormLabel>
+                    <CFormLabel className="col-form-label">In Production</CFormLabel>
                   </CCol>
                   <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
+                    <CFormCheck id="proEmail" name="proEmail" checked={subscribe.proEmail} onChange={handleChange} style={checkBoxStyle}/>
                   </CCol>
                   <CCol>
-                    <CFormCheck id="flexCheckDefault" style={checkBoxStyle}/>
+                    <CFormCheck id="proSms" name="proSms" checked={subscribe.proSms} onChange={handleChange} style={checkBoxStyle}/>
+                  </CCol>
+                </CRow>
+              </CContainer>
+            </CListGroupItem>
+            <CListGroupItem>
+              <CContainer style={vars}>
+              <CRow>
+                  <CCol>
+                    <CFormLabel className="col-form-label">Preparing Shipment</CFormLabel>
+                  </CCol>
+                  <CCol>
+                    <CFormCheck id="preEmail" name="preEmail" checked={subscribe.preEmail} onChange={handleChange} style={checkBoxStyle}/>
+                  </CCol>
+                  <CCol>
+                    <CFormCheck id="preSms" name="preSms" checked={subscribe.preSms} onChange={handleChange} style={checkBoxStyle}/>
+                  </CCol>
+                </CRow>
+              </CContainer>
+            </CListGroupItem>
+            <CListGroupItem>
+              <CContainer style={vars}>
+              <CRow>
+                  <CCol>
+                    <CFormLabel className="col-form-label">In Transit</CFormLabel>
+                  </CCol>
+                  <CCol>
+                    <CFormCheck id="traEmail" name="traEmail" checked={subscribe.traEmail} onChange={handleChange} style={checkBoxStyle}/>
+                  </CCol>
+                  <CCol>
+                    <CFormCheck id="traSms" name="traSms" checked={subscribe.traSms} onChange={handleChange} style={checkBoxStyle}/>
                   </CCol>
                 </CRow>
               </CContainer>

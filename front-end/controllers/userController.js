@@ -39,9 +39,26 @@ const userLogin = asyncHandler(async(req, res) => {
 })
 
 const userProfile = asyncHandler(async(req, res) => {
-    await Address.findOne({ user_id : req.params.user_id })
-        .then((addresses) => res.json(addresses))
-        .catch((err) => res.status(400).json("Error: " + err));
+    // await Address.findOne({ user_id : req.params.user_id })
+    //     .then((addresses) => res.json(addresses))
+    //     .catch((err) => res.status(400).json("Error: " + err));
+    await Address.aggregate([
+        { $lookup: {
+            from: "notifications",
+            localField: "user_id",
+            foreignField: "user_id",
+            as: "notifications",
+        },},
+        {
+            $unwind: {
+              path: "$notifications",
+              // includeArrayIndex: 'string',
+              // preserveNullAndEmptyArrays: boolean
+            },
+          },
+    ])
+    .then((profiles) => res.json(profiles))
+    .catch((err) => res.status(400).json("Error: " + err));
   
   });
   

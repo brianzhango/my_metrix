@@ -43,7 +43,7 @@ export function ProfileInfo() {
           .get(`/api/users/${user_id}`, { headers: {
             'Authorization': 'Bearer ' + user.token
           }})
-          .then((response) => localStorage.setItem('address', JSON.stringify(response.data)))
+          .then((response) => localStorage.setItem('profile', JSON.stringify(response.data)))
 
       }}, [user_id]);
 
