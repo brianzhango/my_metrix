@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom"
 import {logout, reset} from "../../features/auth/authSlice"
@@ -21,7 +21,15 @@ import avatar8 from "../../assets/images/avatars/8.svg";
 const AppHeaderDropdown = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
   const {user} = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    if(user == null)
+    {
+      navigate('/login')
+    }
+  })
 
   const onLogout = () => {
 
