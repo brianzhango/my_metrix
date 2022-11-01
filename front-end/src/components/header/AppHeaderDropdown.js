@@ -25,16 +25,6 @@ const AppHeaderDropdown = () => {
 
   const {user} = useSelector((state) => state.auth)
 
-  useEffect(() => {
-    if(user == null)
-    {
-      navigate('/login')
-    }
-    else {
-      const Link = `/users/${user.id}`
-    }
-  })
-
   const onLogout = () => {
 
     dispatch(logout())
@@ -43,7 +33,15 @@ const AppHeaderDropdown = () => {
 
   }
 
-
+  useEffect(() => {
+    if(user == null)
+    {
+      navigate('/login')
+    }},[user])
+   
+if(user != null) {
+  
+  let Link = `/users/${user.id}`
   
   return (
     <CDropdown variant="nav-item">
@@ -66,6 +64,7 @@ const AppHeaderDropdown = () => {
       </CDropdownMenu>
     </CDropdown>
   );
+}
 };
 
 export default AppHeaderDropdown;
