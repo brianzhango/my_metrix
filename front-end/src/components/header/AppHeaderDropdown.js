@@ -17,6 +17,7 @@ import { cilLockLocked, cilUser, cilAccountLogout } from "@coreui/icons";
 import CIcon from "@coreui/icons-react";
 
 import avatar8 from "../../assets/images/avatars/8.svg";
+import { element } from "prop-types";
 
 const AppHeaderDropdown = () => {
   const navigate = useNavigate()
@@ -29,6 +30,9 @@ const AppHeaderDropdown = () => {
     {
       navigate('/login')
     }
+    else {
+      const Link = `/users/${user.id}`
+    }
   })
 
   const onLogout = () => {
@@ -39,7 +43,7 @@ const AppHeaderDropdown = () => {
 
   }
 
-  const Link = `/users/${user.id}`
+
   
   return (
     <CDropdown variant="nav-item">
