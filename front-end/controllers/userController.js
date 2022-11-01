@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const User = require('../../models/user.model')
 const Address = require('../../models/address.model')
+const Notification = require('../../models/notification.model')
 
 const userLogin = asyncHandler(async(req, res) => {
 
@@ -63,6 +64,16 @@ const userProfile = asyncHandler(async(req, res) => {
   });
   
 
+const updateProfile = asyncHandler(async(req, res) => {
+
+    await Notification.findOneAndUpdate(req.params.user_id, req.body, {
+        new: true
+    })
+    .then((notifications) => res.json(notifications))
+    .catch((err) => res.status(400).json("Error: " + err));
+    
+
+});
 // Generate JWT
 const generatToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET, {
@@ -75,4 +86,5 @@ const generatToken = (id) => {
 module.exports = {
     userLogin,
     userProfile,
+    updateProfile
 }

@@ -15,10 +15,22 @@ import {
   CFormInput,
   CFormLabel,
   CFormCheck,
-  CButton
+  CButton,
+  CForm,
+  CModal,
+  CModalBody,
+  CModalHeader,
+  CModalTitle,
+  CModalFooter
 } from "@coreui/react";
 
 export function NotificationCard() {
+
+    const {user} = useSelector((state) => state.auth)
+
+    const { user_id } = useParams()
+
+    const [visible, setVisible] = useState(false)
 
     const vars = {
         textAlign: "center",
@@ -61,8 +73,31 @@ export function NotificationCard() {
 
     }
 
+    const handleSubmit = (e) =>{
+      e.preventDefault()
+    
+      axios
+          .put(`/api/users/${user_id}`, subscribe)
+      
+      setVisible(previ => !previ)
+    }
+
     return(
         <>
+        <CModal visible={visible} onClose={() => {setVisible(false); window.location.reload(false)}}>
+            <CModalHeader onClose={() => {setVisible(false); window.location.reload(false)}}>
+                <CModalTitle>Success</CModalTitle>
+            </CModalHeader>
+            <CModalBody style={{'textAlign':'center'}}>
+                Your notification preference has been saved!
+            </CModalBody>
+            <CModalFooter>
+                <CButton color="primary" onClick={() => {setVisible(false); window.location.reload(false)}}>
+                Close
+                </CButton>
+            </CModalFooter>
+         </CModal>
+        <CForm onSubmit={handleSubmit}>
         <CRow>
         <CCard style={{'maxWidth':'700px'}}>
           <CListGroup flush>
@@ -174,13 +209,14 @@ export function NotificationCard() {
                 color="primary"
                 target="_self"
                 size="lg"
+                type="submit"
                 >
                 {" "}
                 Save
                 </CButton>
 
         </div>
-            
+        </CForm> 
         </>
     )
 }
