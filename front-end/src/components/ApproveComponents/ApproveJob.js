@@ -436,6 +436,8 @@ export function ApproveJob() {
                                 <CTableBody style={{'fontSize':'25px'}}>
                                     <CTableRow style={{'fontSize':'20px'}}>
                                     <CTableDataCell><strong style={{'color':'red'}}>Decline</strong>: If changes need to be made, please detail this in the pop up window by pressing Decline button.</CTableDataCell>
+                                    </CTableRow>
+                                    <CTableRow style={{'fontSize':'20px'}}>
                                     <CTableDataCell><strong style={{'color':'blue'}}>Approve</strong>: If the PDF drawings are correct and no further changes are required, please acknowledge by pressing the Approval button below that your order is ready for manufacturing. Changes after this point will not be accepted.</CTableDataCell>
                                     </CTableRow>
                                 </CTableBody>
@@ -484,24 +486,19 @@ export function ApproveJob() {
                             <CTableBody style={{'fontSize':'25px'}}>
                                 {/* Decline Comments */}
                                 <CTableRow style={{'fontSize':'20px'}}>
-                                <CTableHeaderCell>Material Type and Thickness</CTableHeaderCell>
-                                <CTableDataCell>{comment.materialComment}</CTableDataCell>
+                                <CTableDataCell><strong>Material Type and Thickness</strong><p>{comment.materialComment}</p></CTableDataCell>
                                 </CTableRow>
                                 <CTableRow style={{'fontSize':'20px'}}>
-                                <CTableHeaderCell>Pattern</CTableHeaderCell>
-                                <CTableDataCell>{comment.patternComment}</CTableDataCell>
+                                <CTableDataCell><strong>Pattern</strong><p>{comment.patternComment}</p></CTableDataCell>
                                 </CTableRow>
                                 <CTableRow style={{'fontSize':'20px'}}>
-                                <CTableHeaderCell>Colour</CTableHeaderCell>
-                                <CTableDataCell>{comment.colourComment}</CTableDataCell>
+                                <CTableDataCell><strong>Colour</strong><p>{comment.colourComment}</p></CTableDataCell>
                                 </CTableRow>
                                 <CTableRow style={{'fontSize':'20px'}}>
-                                <CTableHeaderCell>Price</CTableHeaderCell>
-                                <CTableDataCell>{comment.priceComment}</CTableDataCell>
+                                <CTableDataCell><strong>Price</strong><p>{comment.priceComment}</p></CTableDataCell>
                                 </CTableRow>
                                 <CTableRow style={{'fontSize':'20px'}}>
-                                <CTableHeaderCell>Drawing</CTableHeaderCell>
-                                <CTableDataCell>{comment.drawingComment}</CTableDataCell>
+                                <CTableDataCell><strong>Drawing</strong><p>{comment.drawingComment}</p></CTableDataCell>
                                 </CTableRow>
                             </CTableBody>
                         </CTable>
