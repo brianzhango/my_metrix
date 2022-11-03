@@ -11,6 +11,7 @@ const jobDetailSchema = mongoose.Schema(
     sqm: String,
     price: String,
     rgba: [String],
+    filename: String
   },
   { timestamps: true },
   { collection: "job_details" }

@@ -78,7 +78,7 @@ export function ShipmentDetail() {
     marginBottom: "4px",
   };
 
-  const pdfLink = `/api/upload/${ship_id}.pdf`
+  const pdfLink = `/api/upload/${shipment.filename}.pdf`
 
   const trackLink =`https://www.mainfreight.com/en-nz/tracking?trackingnumber=${shipment.track_number}`
 

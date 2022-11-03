@@ -7,6 +7,7 @@ const shipmentSchema = mongoose.Schema(
     ship_date: Date,
     track_number: String,
     freighter: String,
+    filename: String
   },
   { timestamps: true },
   { collection: "shipments" }

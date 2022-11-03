@@ -80,6 +80,7 @@ const shipmentDisplay = asyncHandler(async(req, res) => {
             ship_id: 1,
             track_number: 1,
             freighter: 1,
+            filename: 1,
             ship_date: {
               $dateToString: {
                 date: "$ship_date",
@@ -107,6 +108,7 @@ const shipmentDetail = asyncHandler(async(req, res) => {
             ship_id: 1,
             track_number: 1,
             freighter: 1,
+            filename: 1,
             ship_date: {
               $dateToString: {
                 date: "$ship_date",

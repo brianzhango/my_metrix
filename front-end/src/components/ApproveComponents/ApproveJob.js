@@ -69,7 +69,9 @@ export function ApproveJob() {
 
     const navigate = useNavigate()
 
-    const pdfLink = `/api/upload/${job_number}.pdf`
+    const pdfLink = `/api/upload/${detail.filename}.pdf`
+
+    const emailPdfLink = `https://my-metrix-test.herokuapp.com/api/upload/${detail.filename}.pdf`
 
     // For approve 
     const emailData ={
@@ -79,7 +81,8 @@ export function ApproveJob() {
         jobNumber : job_number,
         phone : user.phone,
         company : user.company,
-        dateTime : Date().toLocaleString()
+        dateTime : Date().toLocaleString(),
+        pdf: emailPdfLink
 
     }
 
