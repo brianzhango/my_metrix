@@ -34,7 +34,7 @@ file: (req, file) => {
       if (err) {
         return reject(err);
       }
-      const filename = buf.toString('hex')
+      const filename = buf.toString('hex') + path.extname(file.originalname);
       const fileInfo = {
         filename: filename,
         bucketName: 'uploads'
