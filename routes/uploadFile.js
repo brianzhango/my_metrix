@@ -7,7 +7,6 @@ const multer = require('multer')
 const {GridFsStorage} = require('multer-gridfs-storage')
 const Grid = require('gridfs-stream')
 
-
 const URI = "mongodb+srv://brianozhang:869323246@cluster0.ima9o2n.mongodb.net/test"
 
 // Create db connection
@@ -64,17 +63,6 @@ router.get('/:filename', (req, res) => {
 
     const readstream = gridfsBucket.openDownloadStreamByName(file.filename);
     readstream.pipe(res);
-
-    // // Check if image
-    // if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-    //   // Read output to browser
-    //   const readstream = gridfsBucket.openDownloadStreamByName(file.filename);
-    //   readstream.pipe(res);
-    // } else {
-    //   res.status(404).json({
-    //     err: 'Not an image'
-    //   });
-    // }
   });
 });
 
