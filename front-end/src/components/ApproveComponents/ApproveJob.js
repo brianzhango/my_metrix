@@ -29,7 +29,6 @@ import {
 import CIcon from "@coreui/icons-react";
 import { cibFlask, cilArrowThickLeft } from '@coreui/icons';
 import emailjs from '@emailjs/browser';
-import { configs } from "eslint-plugin-prettier";
 
 export function ApproveJob() {
     const [detail, setDetail] = useState([])
@@ -108,7 +107,7 @@ export function ApproveJob() {
     const handleClick = (e) =>{
         setApproveStatus(prevstate => !prevstate)
         
-        emailjs.send('service_g5rdo8x', 'template_6v29faf', emailData, 'W2DBytpBdKSHHqY9y')
+        emailjs.send('<<service ID>>', '<<template ID>>', emailData, '<<public key>>')
         .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
         }, function(error) {
@@ -116,11 +115,11 @@ export function ApproveJob() {
         });
 
     }
-
+     // Final Decline Button & Send Email
     const handleDecline = (e) =>{
         setVisible(prevstate => !prevstate)
 
-        emailjs.send('service_g5rdo8x', 'template_jkx97ng', emailDataDecline, 'W2DBytpBdKSHHqY9y')
+        emailjs.send('<<service ID>>', '<<template ID>>', emailDataDecline, '<<public key>>')
         .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
         }, function(error) {
@@ -212,7 +211,7 @@ export function ApproveJob() {
           })
          }
         },[0]);
-    
+
     if (materialStatus == false)
     {
     return(

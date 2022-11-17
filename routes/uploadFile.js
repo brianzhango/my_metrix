@@ -7,7 +7,7 @@ const multer = require('multer')
 const {GridFsStorage} = require('multer-gridfs-storage')
 const Grid = require('gridfs-stream')
 
-const URI = "mongodb+srv://brianozhang:869323246@cluster0.ima9o2n.mongodb.net/test"
+const URI = "mongodb+srv://<<username>>:<<password>>@cluster0.ima9o2n.mongodb.net/test"
 
 // Create db connection
 const conn = mongoose.createConnection(URI);

@@ -33,7 +33,7 @@ const db = require("./models");
 
 db.mongoose
   .connect(
-    "mongodb+srv://brianozhang:869323246@cluster0.ima9o2n.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://<<username>>:<<password>>@cluster0.ima9o2n.mongodb.net/?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
